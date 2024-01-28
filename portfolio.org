@@ -26,5 +26,5 @@
 * button
 * https-proxy
 https://git.sr.ht/~ozzloy/https-proxy
-* email on each.do
+* email on each.do and challenge-bot.com
 ** configured DKIM, SPF, DMARC
