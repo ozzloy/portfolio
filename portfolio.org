@@ -1,9 +1,16 @@
-* bingo
-** clojure
+* https://bingo.each.do
 ** built to play bingo with my grampa during covid
+** other family members use it to join from various households
 ** realtime communication with websockets via sente
-** reagent interaction via reagent
-** html generation via hiccup
-** figwheel for hot reloading during development
+** clojure
+** react via reagent
+** html via hiccup
+** hand written css
+** figwheel for hot reloading html & css
+** http traffic handled by httpkit
+** compojure for routing http and websockets
 ** https through let's encrypt
 *** *.each.do wildcard certificate by manual dns entry challenge
+** each.do through marcaria.com
+** served via reverse proxy through apache to clojure
+** systemd service files to start on boot and restart if it dies
