@@ -17,7 +17,7 @@
 ** systemd service files to start on boot and restart if it dies
 * boa
 ** made for tutoring with students, initially
-** use it a lot and make annotated tags instead of commits
+** use it a lot now and make annotated tags instead of commits
 * neclock
 ** created for keeping students aware of what time it is in maker space
 ** grade levels had staggered break schedules
