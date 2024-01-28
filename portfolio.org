@@ -16,7 +16,7 @@
 ** served via reverse proxy through apache to clojure
 ** systemd service files to start on boot and restart if it dies
 * boa
-** made for tutoring with students
+** made for tutoring with students, initially
 * neclock
 ** created for keeping students aware of what time it is in maker space
 ** grade levels had staggered break schedules
