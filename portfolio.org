@@ -18,6 +18,7 @@
 * boa
 ** made for tutoring with students, initially
 ** use it a lot now and make annotated tags instead of commits
+*** considered notes, but it was not as well supported in web interfaces
 * neclock
 ** created for keeping students aware of what time it is in maker space
 ** grade levels had staggered break schedules
