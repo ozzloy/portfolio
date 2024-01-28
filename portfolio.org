@@ -2,10 +2,10 @@
 ** built to play bingo with my grampa during covid
 ** other family members use it to join from various households
 ** i built the stack from the virtual server to the css
-** clojure
-** realtime communication with websockets via sente
-** react via reagent
-** html via hiccup
+** clojurescript for the web page, clojure for the server
+** realtime communication via websockets
+** reagen to update DOM via react
+** html generation via hiccup
 ** hand written css
 ** figwheel for hot reloading html & css
 ** http traffic handled by httpkit
