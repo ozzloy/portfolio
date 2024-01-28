@@ -15,3 +15,6 @@
 ** each.do through marcaria.com
 ** served via reverse proxy through apache to clojure
 ** systemd service files to start on boot and restart if it dies
+* neclock
+** created for keeping students aware of what time it is in maker space
+** different grade levels came and left at different times
