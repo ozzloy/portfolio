@@ -1,6 +1,7 @@
 * https://bingo.each.do
 ** built to play bingo with my grampa during covid
 ** other family members use it to join from various households
+** full stack
 ** realtime communication with websockets via sente
 ** clojure
 ** react via reagent
