@@ -1,0 +1,9 @@
+* bingo
+** clojure
+** built to play bingo with my grampa during covid
+** realtime communication with websockets via sente
+** reagent interaction via reagent
+** html generation via hiccup
+** figwheel for hot reloading during development
+** https through let's encrypt
+*** *.each.do wildcard certificate by manual dns entry challenge
