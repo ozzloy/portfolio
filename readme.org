@@ -1,4 +1,5 @@
 * https://bingo.each.do
+** code at https://git.sr.ht/~ozzloy/b1ng0
 ** built to play bingo with my grampa during covid
 ** other family members use it to join from various households
 ** i built the stack from the virtual server to the css
