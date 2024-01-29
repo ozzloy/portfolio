@@ -20,6 +20,8 @@
   + served via reverse proxy through apache to clojure
   + systemd service files to start on boot and restart if it dies
 * boa
+  + https://git@git.sr.ht:~ozzloy/boa
+  + bash
   + made for tutoring with students, initially
   + use it a lot now and make annotated tags instead of commits
 * neclock
