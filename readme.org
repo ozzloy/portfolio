@@ -1,3 +1,4 @@
+
 * https://bingo.each.do
 ** code at https://git.sr.ht/~ozzloy/b1ng0
 ** built to play bingo with my grampa during covid
