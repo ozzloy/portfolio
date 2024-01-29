@@ -1,3 +1,5 @@
+#+title: Daniel Watson's Portfolio
+#+options: toc:nil
 
 * https://bingo.each.do
 ** code at https://git.sr.ht/~ozzloy/b1ng0
