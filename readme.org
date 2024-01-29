@@ -24,7 +24,7 @@
   + make a commit for every filesystem event, pushes to remote
   + helps tutoring with students, allow them to get code quickly
   + bash
-  + use it a lot now and make annotated tags instead of commits
+  + make annotated tags instead of commits
 * neclock
   + created for keeping students aware of what time it is in maker space
   + grade levels had staggered break schedules
