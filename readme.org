@@ -70,11 +70,12 @@
   + often this is the content of the meetup for orange combinator
     + https://www.meetup.com/orange-combinator/
 * button
+  + https://git.sr.ht/~ozzloy/button
   + smart button
   + arduino
   + state-machine to allow LED updating and listening for button press
 * https-proxy
-https://git.sr.ht/~ozzloy/https-proxy
+  + https://git.sr.ht/~ozzloy/https-proxy
 * email on each.do
   + configured DKIM, SPF, DMARC
   + configured exim
