@@ -1,7 +1,8 @@
 
 
-# <https://bingo.each.do>
+# bingo
 
+-   playable right now at <https://bingo.each.do/>
 -   code at <https://git.sr.ht/~ozzloy/b1ng0>
 -   built to play bingo with my grampa during covid
 -   other family members use it to join from various households
@@ -21,34 +22,79 @@
 -   systemd service files to start on boot and restart if it dies
 
 
+# master lock combo recovery
+
+-   code at <https://git.sr.ht/~ozzloy/combo-breaker-build>
+-   recover master lock combinations for school
+-   3d modeling with openscad
+-   wiring diagrams with fritzing
+-   firmware in Arduino (C++)
+
+
 # boa
 
--   made for tutoring with students, initially
--   use it a lot now and make annotated tags instead of commits
+-   <https://git.sr.ht/~ozzloy/boa>
+-   commit and push on every filesystem event
+-   helps with tutoring, allows students to get code quickly
+-   bash
+-   commits have empty messages, make annotated tags instead
 
 
 # neclock
 
--   created for keeping students aware of what time it is in maker space
+-   <https://git.sr.ht/~ozzloy/neclock>
+-   keep students aware of what time it is in maker space
 -   grade levels had staggered break schedules
 
 
-# master lock combo recovery
+# tax
 
-
-# taxes
+-   not public, has personal info
+-   clojure
+-   asks questions and fills out tax forms, generates pdfs
+    -   federal forms
+        -   f1040
+        -   f1040es
+        -   f1040s1
+        -   f1040s2
+        -   f1040s3
+        -   f1040sc
+        -   f1040se
+        -   f1040sse
+    -   california forms
+        -   540
+        -   3853
+        -   5805
 
 
 # sheesh
 
+-   shell implemented in c
+-   later reimplemented in rust
+-   <https://git.sr.ht/~ozzloy/sheesh>
+-   process management
+-   IO redirection, eg. "echo hi | cat > file.txt"
+-   no memory problems in valgrind
+
 
 # brutish
+
+-   same shell as sheesh, implemented in rust
+-   <https://git.sr.ht/~ozzloy/brutish>
 
 
 # notes on rustlings
 
+-   as i work through rustlings, i have questions
+-   often this is the content of the meetup for orange combinator
+    -   <https://www.meetup.com/orange-combinator/>
+
 
 # button
+
+-   smart button
+-   arduino
+-   state-machine to allow LED updating and listening for button press
 
 
 # https-proxy
