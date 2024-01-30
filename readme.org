@@ -25,7 +25,7 @@
   + commit and push on every filesystem event
   + helps with tutoring, allows students to get code quickly
   + bash
-  + make annotated tags instead of commits
+  + commits have empty messages, make annotated tags instead
 * neclock
   + https://git.sr.ht/~ozzloy/neclock
   + created for keeping students aware of what time it is in maker space
