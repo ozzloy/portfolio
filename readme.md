@@ -49,9 +49,11 @@
 
 # tax
 
+-   automatically fill pdf forms
+    -   only ask user top level question, fill in derived answers
 -   not public, has personal info
 -   clojure
--   asks questions and fills out tax forms, generates pdfs
+-   filled pdfs
     -   federal forms
         -   f1040
         -   f1040es
