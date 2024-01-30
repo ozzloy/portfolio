@@ -20,6 +20,12 @@
   + domain =each.do= through marcaria.com
   + served via reverse proxy through apache to clojure
   + systemd service files to start on boot and restart if it dies
+* master lock combo recovery
+  + code at https://git.sr.ht/~ozzloy/combo-breaker-build
+  + recover master lock combinations for school
+  + 3d modeling with openscad
+  + wiring diagrams with fritzing
+  + firmware in Arduino (C++)
 * boa
   + https://git.sr.ht/~ozzloy/boa
   + commit and push on every filesystem event
@@ -30,9 +36,22 @@
   + https://git.sr.ht/~ozzloy/neclock
   + keep students aware of what time it is in maker space
   + grade levels had staggered break schedules
-* master lock combo recovery
-  + code at https://git.sr.ht/~ozzloy/combo-breaker-build
-* taxes
+* tax
+  + not public, has personal info
+  + asks questions and fills out tax forms, generates pdfs
+    + federal
+      + f1040
+      + f1040es
+      + f1040s1
+      + f1040s2
+      + f1040s3
+      + f1040sc
+      + f1040se
+      + f1040sse
+    + california
+      + 540
+      + 3853
+      + 5805
 * sheesh
 * brutish
 * notes on rustlings
