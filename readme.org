@@ -1,7 +1,8 @@
 #+title: Daniel Watson's Portfolio
 #+options: toc:nil
 
-* https://bingo.each.do
+* bingo
+  + playable right now at https://bingo.each.do/
   + code at https://git.sr.ht/~ozzloy/b1ng0
   + built to play bingo with my grampa during covid
   + other family members use it to join from various households
@@ -20,12 +21,13 @@
   + served via reverse proxy through apache to clojure
   + systemd service files to start on boot and restart if it dies
 * boa
-  + https://git@git.sr.ht:~ozzloy/boa
+  + https://git.sr.ht/~ozzloy/boa
   + make a commit for every filesystem event, pushes to remote
   + helps tutoring with students, allow them to get code quickly
   + bash
   + make annotated tags instead of commits
 * neclock
+  + https://git.sr.ht/~ozzloy/neclock
   + created for keeping students aware of what time it is in maker space
   + grade levels had staggered break schedules
 * master lock combo recovery
