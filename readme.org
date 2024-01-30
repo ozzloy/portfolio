@@ -64,7 +64,13 @@
   + same shell as sheesh, implemented in rust
   + https://git.sr.ht/~ozzloy/brutish
 * notes on rustlings
+  + as i work through rustlings, i have questions
+  + often this is the content of the meetup for orange combinator
+    + https://www.meetup.com/orange-combinator/
 * button
+  + smart button
+  + arduino
+  + state-machine to allow LED updating and listening for button press
 * https-proxy
 https://git.sr.ht/~ozzloy/https-proxy
 * email on each.do
