@@ -38,8 +38,9 @@
   + grade levels had staggered break schedules
 * tax
   + not public, has personal info
+  + clojure
   + asks questions and fills out tax forms, generates pdfs
-    + federal
+    + federal forms
       + f1040
       + f1040es
       + f1040s1
@@ -48,7 +49,7 @@
       + f1040sc
       + f1040se
       + f1040sse
-    + california
+    + california forms
       + 540
       + 3853
       + 5805
