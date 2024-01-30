@@ -53,7 +53,15 @@
       + 3853
       + 5805
 * sheesh
+  + shell implemented in c
+  + later reimplemented in rust
+  + https://git.sr.ht/~ozzloy/sheesh
+  + capable of process management
+  + IO redirection, eg. "echo hi | cat > file.txt"
+  + no memory problems in valgrind
 * brutish
+  + same shell as sheesh, implemented in rust
+  + https://git.sr.ht/~ozzloy/brutish
 * notes on rustlings
 * button
 * https-proxy
