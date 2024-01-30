@@ -22,7 +22,7 @@
   + systemd service files to start on boot and restart if it dies
 * boa
   + https://git.sr.ht/~ozzloy/boa
-  + make a commit for every filesystem event, pushes to remote
+  + make a commit on every filesystem event, pushes to remote
   + helps tutoring with students, allow them to get code quickly
   + bash
   + make annotated tags instead of commits
