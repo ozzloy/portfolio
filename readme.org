@@ -56,7 +56,7 @@
   + shell implemented in c
   + later reimplemented in rust
   + https://git.sr.ht/~ozzloy/sheesh
-  + capable of process management
+  + process management
   + IO redirection, eg. "echo hi | cat > file.txt"
   + no memory problems in valgrind
 * brutish
