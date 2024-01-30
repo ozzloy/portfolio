@@ -28,9 +28,10 @@
   + commits have empty messages, make annotated tags instead
 * neclock
   + https://git.sr.ht/~ozzloy/neclock
-  + created for keeping students aware of what time it is in maker space
+  + keep students aware of what time it is in maker space
   + grade levels had staggered break schedules
 * master lock combo recovery
+  + code at https://git.sr.ht/~ozzloy/combo-breaker-build
 * taxes
 * sheesh
 * brutish
