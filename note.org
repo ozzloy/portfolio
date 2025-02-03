@@ -49,3 +49,306 @@ Common uses for deps.edn include:
 #+begin_src clojure
 {:jvm-opts ["-Xms512m" "-Xmx1024m"]}
 #+end_src
+
+* figwheel-main minimal complete
+
+show a minimal complete figwheel main example.
+
+Here's a minimal Figwheel-main example:
+
+#+begin_src clojure
+  ; deps.edn
+  {:deps {org.clojure/clojure {:mvn/version "1.11.1"}
+          org.clojure/clojurescript {:mvn/version "1.11.60"}
+          com.bhauman/figwheel-main {:mvn/version "0.2.18"}}
+   :paths ["src" "resources" "target"]
+   :aliases {:fig {:main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}}}
+
+  ; dev.cljs.edn
+  ^{:watch-dirs ["src"]
+    :css-dirs ["resources/public/css"]}
+  {:main hello.core}
+
+  ; src/hello/core.cljs
+  (ns hello.core)
+
+  (defn init []
+    (js/console.log "Hello, Figwheel!"))
+
+  (init)
+
+  ; resources/public/index.html
+  <!DOCTYPE html>
+  <html>
+    <head></head>
+    <body>
+      <div id="app"></div>
+      <script src="cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+Run with:
+#+begin_src bash
+  clj -M:fig
+#+end_src
+
+Visit: http://localhost:9500
+
+* align forms dir local
+
+** first try
+what are some options i can put in my .dir-locals for clojure and
+clojurescript?  include things for aligning forms.  i'm also interested
+in cider options and test running options.
+
+Here's a sample .dir-locals.el for Clojure/ClojureScript projects:
+
+#+begin_src elisp
+((clojure-mode . ((clojure-align-forms-automatically . t)
+                  (clojure-indent-style . :align-arguments)
+                  (cider-clojure-cli-aliases . "dev:test")
+                  (cider-preferred-build-tool . clojure-cli)
+                  (cider-test-runner . "kaocha")
+                  (eval . (put-clojure-indent 'match 1))
+                  (eval . (put-clojure-indent 'reg-event-fx 0))))
+
+ (clojurescript-mode . ((cider-default-cljs-repl . shadow)
+                       (cider-shadow-default-options . "app"))))
+#+end_src
+
+These are common options, but you can customize based on your needs.
+The alignment and indentation options are particularly useful for
+consistent formatting.
+** second try, add figwheel main
+
+what are some options i can put in my .dir-locals for clojure and
+clojurescript?  include things for aligning forms.  i'm also interested
+in cider options, test running options, and figwheel main options.
+
+Here's a sample .dir-locals.el for Clojure/ClojureScript projects:
+
+#+begin_src elisp
+  ((clojure-mode . ((clojure-align-forms-automatically . t)
+                    (clojure-indent-style . :always-align)
+                    (fill-column . 80)))
+
+   (clojurescript-mode . ((clojure-align-forms-automatically . t)
+                         (cider-default-cljs-repl . figwheel-main)
+                         (cider-figwheel-main-default-options . ":dev")))
+
+   (cider-repl-mode . ((cider-preferred-build-tool . clojure-cli)
+                      (cider-test-show-report-on-success . t)
+                      (cider-repl-display-help-banner . nil)
+                      (cider-repl-history-size . 1000)))
+
+   (clojure-test-mode . ((cider-test-show-report-on-success . t)
+                        (cider-auto-test-mode . t))))
+#+end_src
+
+These are common options, but there are many more available depending
+on your needs.
+
+* drilling down on deps.edn configuration
+
+here's the files in my bare minimum clojurescript project.
+#+begin_src clojure
+  ; deps.edn
+  {:paths ["src" "resources" "target"]
+  :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+         org.clojure/clojurescript {:mvn/version "1.11.132"}
+         com.bhauman/figwheel-main {:mvn/version "0.2.20"}}
+  :aliases {:fig {:main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}}}
+
+  ; dev.cljs.edn
+  ^{:watch-dirs ["src"]
+    :css-dirs ["resources/public/css"]}
+  {:main to.tuo.portfolio}
+
+  ; src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio)
+
+  (defn init []
+    (js/console.log "hello, figwheel"))
+
+  (init)
+#+end_src
+
+#+begin_src elisp
+  ; .dir-locals.el
+  ((clojure-mode . ((clojure-align-forms-automatically . t)
+                    (clojure-indent-style . :always-align)
+                    (fill-column . 70)))
+
+   (clojurescript-mode . ((clojure-align-forms-automatically . t)
+                          (fill-column . 70)
+                          (cider-default-cljs-repl . figwheel-main)
+                          (cider-figwheel-main-default-options . ":dev")))
+
+   (cider-repl-mode . ((cider-preferred-build-tool . clojure-cli)
+                       (cider-test-show-report-on-success . t)
+                       (cider-repl-display-help-banner . nil)
+                       (cider-repl-history-size . 1000)))
+
+   (clojure-test-mode . ((cider-test-show-report-on-success . t)
+                         (cider-auto-test-mode . t))))
+#+end_src
+
+#+begin_src html
+  ; resources/public/index.html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <style>
+        body {
+          color: white;
+          background-color: black;
+        }
+      </style>
+      <title>figwheel main example</title>
+    </head>
+    <body>
+      <script src="/cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+please explain the command line options for the alias fig. could i
+change it if i'm going to use cider in spacemacs to run figwheel and
+connect a repl to the code in the file =src/to/tuo/portfolio.cljs= and
+to a browser window for evaluation? how do i change =deps.edn= for
+that? how do i then launch a cider session and connect it to the code
+and the browser?  what do the options in =.dir-locals.el= do?  are there
+more options i could add to automate starting the cider repl?
+
+
+Let's break this down:
+
+1. The =:fig= alias options:
+   - =-m figwheel.main=: runs figwheel.main as the entry point
+   - =-b dev=: uses the =dev.cljs.edn= build configuration
+   - =-r=: auto-runs the build on startup
+
+2. For CIDER/Spacemacs usage, you can remove the =:fig= alias as CIDER
+   will handle the REPL startup. The deps.edn can remain as is, just
+   with the dependencies.
+
+3. To start a CIDER session in Spacemacs:
+   - =SPC m s i= (cider-jack-in-cljs)
+   - Select =figwheel-main= when prompted
+   - Enter =:dev= when asked for options
+   - Browser will open automatically
+
+4. .dir-locals.el breakdown:
+   - =cider-default-cljs-repl=: sets figwheel-main as default CLJS REPL
+   - =cider-figwheel-main-default-options=: pre-sets =:dev= build option
+   - Other options control formatting and REPL behavior
+
+5. Additional .dir-locals.el options you could add:
+#+begin_src elisp
+((clojurescript-mode
+  . ((cider-preferred-build-tool . clojure-cli)
+     (cider-default-cljs-repl . figwheel-main)
+     (cider-figwheel-main-default-options . ":dev")
+     (cider-repl-init-code . ("(require 'to.tuo.portfolio)")))))
+#+end_src
+
+This will automate more of the startup sequence.
+
+* clojurescript to add html
+i have the following minimal clojurescript project
+
+#+begin_src clojure :file deps.edn
+  {:paths ["src" "resources" "target"]
+   :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+          org.clojure/clojurescript {:mvn/version "1.11.132"}
+          com.bhauman/figwheel-main {:mvn/version "0.2.20"}}}
+#+end_src
+
+#+begin_src clojure :file dev.cljs.edn
+  ^{:watch-dirs ["src"]
+    :css-dirs ["resources/public/css"]}
+  {:main to.tuo.portfolio}
+#+end_src
+
+#+begin_src html :file resources/public/index.html
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <style>
+        body {
+          color: white;
+          background-color: black;
+        }
+      </style>
+      <title>figwheel main example</title>
+    </head>
+    <body>
+      <script src="/cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+#+begin_src clojure :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio)
+
+  (defn init []
+    (js/console.log "hello, figwheel"))
+
+  (init)
+#+end_src
+
+how do i add content to the page using clojure code?
+
+
+To add content to the page in ClojureScript, you'll need to use
+JavaScript's DOM manipulation methods. Here's a simple example:
+
+#+begin_src clojure
+(ns to.tuo.portfolio)
+
+(defn init []
+  (let [app (.. js/document (createElement "div"))
+        text (.. js/document (createTextNode "Hello from ClojureScript!"))]
+    (.. app (appendChild text))
+    (.. js/document.body (appendChild app))))
+
+(init)
+#+end_src
+
+For more convenient DOM manipulation, consider using libraries like:
+- =reagent= (React wrapper)
+- =hiccup= (HTML generation)
+- =dommy= (DOM manipulation)
+
+The most popular approach is using Reagent. Here's how to add it:
+
+1. Add to deps.edn:
+#+begin_src clojure
+{:deps {reagent/reagent {:mvn/version "1.2.0"}}}
+#+end_src
+
+2. Use it in your code:
+#+begin_src clojure
+(ns to.tuo.portfolio
+  (:require [reagent.dom :as rdom]
+            [reagent.core :as r]))
+
+(defn app []
+  [:div "Hello from Reagent!"])
+
+(defn init []
+  (rdom/render [app]
+               (.. js/document (getElementById "app"))))
+
+(init)
+#+end_src
+
+Remember to add a div with id="app" to your HTML file if using Reagent.
+
+** hiccup minimal complete
+
+show a minimal complete example of creating a page with hiccup, starting
+with the following project
