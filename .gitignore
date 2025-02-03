@@ -1,2 +1,6 @@
 /readme.html
 /readme.md
+/.clj-kondo/
+/.cpcache/
+/.lsp/
+/target/

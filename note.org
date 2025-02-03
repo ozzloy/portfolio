@@ -1,0 +1,51 @@
+* minimal complete example of hello world clojure app
+show a minimal complete example of a hello world clojure app that uses
+deps.edn
+
+Here's a minimal Clojure hello world app with deps.edn:
+
+#+begin_src clojure
+  ; deps.edn
+  {:paths ["src"]
+   :deps {org.clojure/clojure {:mvn/version "1.11.1"}}}
+
+  ; src/hello/core.clj
+  (ns hello.core)
+
+  (defn -main []
+    (println "Hello, World!"))
+#+end_src
+
+Run it with:
+#+begin_src bash
+  clj -M -m hello.core
+#+end_src
+
+* common uses of deps.edn
+what are some common things to do with deps.edn?
+
+Common uses for deps.edn include:
+
+1. Declaring project dependencies
+#+begin_src clojure
+  {:deps {org.clojure/clojure {:mvn/version "1.11.1"}
+          compojure/compojure {:mvn/version "1.6.3"}}}
+#+end_src
+
+2. Setting up aliases for different profiles
+#+begin_src clojure
+  {:aliases
+   {:dev {:extra-deps {...}}
+    :test {:extra-paths ["test"]}
+    :build {:deps {...}}}}
+#+end_src
+
+3. Adding extra source paths
+#+begin_src clojure
+  {:paths ["src" "resources"]}
+#+end_src
+
+4. Defining JVM options
+#+begin_src clojure
+{:jvm-opts ["-Xms512m" "-Xmx1024m"]}
+#+end_src
