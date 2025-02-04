@@ -350,5 +350,348 @@ Remember to add a div with id="app" to your HTML file if using Reagent.
 
 ** hiccup minimal complete
 
-show a minimal complete example of creating a page with hiccup, starting
+show a minimal complete example of creating html with hiccup, starting
 with the following project
+
+#+begin_src clojure :file deps.edn
+  {:paths ["src" "resources" "target"]
+   :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+          org.clojure/clojurescript {:mvn/version "1.11.132"}
+          com.bhauman/figwheel-main {:mvn/version "0.2.20"}}}
+#+end_src
+
+#+begin_src clojure :file dev.cljs.edn
+  ^{:watch-dirs ["src"]
+    :css-dirs ["resources/public/css"]
+    :open-url false}
+  {:main to.tuo.portfolio}
+#+end_src
+
+#+begin_src html :file resources/public/index.html
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <style>
+        body {
+          color: white;
+          background-color: black;
+        }
+      </style>
+      <title>figwheel main example</title>
+    </head>
+    <body>
+      <script src="/cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+#+begin_src clojure :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio)
+
+  (defn init []
+    (js/console.log "hello, figwheel"))
+
+  (init)
+#+end_src
+
+
+Here's a minimal example using Hiccup. First, add Hiccup to your
+deps.edn:
+
+#+begin_src clojure
+;; deps.edn
+{:paths ["src" "resources" "target"]
+ :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+        org.clojure/clojurescript {:mvn/version "1.11.132"}
+        com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+        hiccup/hiccup             {:mvn/version "1.0.5"}}}
+#+end_src
+
+Then modify your portfolio.cljs:
+
+#+begin_src clojure
+(ns to.tuo.portfolio
+  (:require [hiccup.core :refer [html]]))
+
+(def my-element
+  [:div
+   [:h1 "Hello Hiccup"]
+   [:p "This is a paragraph"]])
+
+(defn init []
+  (set! (.-innerHTML (.-body js/document))
+        (html my-element)))
+
+(init)
+#+end_src
+
+This will render a div containing an h1 and p element when the page
+loads. The html function converts the Hiccup data structure into HTML
+string format.
+
+*** troubleshooting hiccup2
+
+in this clojurescript code, when the namespace declaration changes
+from
+#+begin_src clojurescript :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio)
+#+end_src
+
+to
+
+#+begin_src clojurescript :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio
+    (:require [hiccup2.core :as h]))
+#+end_src
+
+the code stops loading in the browser.  why?
+
+
+This likely occurs because the =hiccup2.core= namespace is meant for
+server-side Clojure, not ClojureScript. Hiccup2 is not compatible with
+ClojureScript. For client-side HTML generation in ClojureScript, you
+should consider using alternatives like:
+
+1. =hiccups= library
+2. =reagent=
+3. =rum=
+
+** reagent minimal complete
+
+show a minimal complete example of creating html with reagent, starting
+with the following project
+
+#+begin_src clojure :file deps.edn
+  {:paths ["src" "resources" "target"]
+   :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+          org.clojure/clojurescript {:mvn/version "1.11.132"}
+          com.bhauman/figwheel-main {:mvn/version "0.2.20"}}}
+#+end_src
+
+#+begin_src clojure :file dev.cljs.edn
+  ^{:watch-dirs ["src"]
+    :css-dirs ["resources/public/css"]
+    :open-url false}
+  {:main to.tuo.portfolio}
+#+end_src
+
+#+begin_src html :file resources/public/index.html
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <style>
+        body {
+          color: white;
+          background-color: black;
+        }
+      </style>
+      <title>figwheel main example</title>
+    </head>
+    <body>
+      <script src="/cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+#+begin_src clojure :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio)
+
+  (defn init []
+    (js/console.log "hello, figwheel"))
+
+  (init)
+#+end_src
+
+
+Here's a minimal Reagent example. First, add Reagent to your deps.edn:
+
+#+begin_src clojure
+;; deps.edn
+{:deps {reagent/reagent {:mvn/version "1.2.0"}
+        ;; ... other deps ...}}
+#+end_src
+
+Update your index.html to include a div for mounting:
+#+begin_src html
+<body>
+  <div id="app"></div>
+  <script src="/cljs-out/dev-main.js"></script>
+</body>
+#+end_src
+
+Then modify your portfolio.cljs:
+#+begin_src clojure
+(ns to.tuo.portfolio
+  (:require [reagent.dom :as rdom]
+            [reagent.core :as r]))
+
+(defn hello []
+  [:div
+   [:h1 "Hello from Reagent"]
+   [:p "This is a component"]])
+
+(defn ^:export init []
+  (rdom/render [hello]
+               (js/document.getElementById "app")))
+
+(init)
+#+end_src
+
+Run with =clj -M:fig:build= and you should see the heading rendered in
+white on black.
+
+after doing that, the following error appears in the browser
+#+begin_quote
+Could not Find Namespace target/public/cljs-out/dev/reagent/impl/component.cljs
+clojure.lang.ExceptionInfo: No such namespace: react, could not locate react.cljs, react.cljc, or JavaScript source providing "react" in file target/public/cljs-out/dev/reagent/impl/component.cljs
+
+1  (ns reagent.impl.component
+2    (:require [goog.object :as gobj]
+3              [react :as react]
+                ^---
+                     No such namespace: react, could not locate react.cljs, react.cljc, or JavaScript source providing "react" in file 
+                                                                                target/public/cljs-out/dev/reagent/impl/component.cljs 
+4              [reagent.impl.util :as util]
+5              [reagent.impl.batching :as batch]
+6              [reagent.impl.protocols :as p]
+7              [reagent.ratom :as ratom]
+8              [reagent.debug :refer-macros [dev? warn warn-unless assert-callable]]))
+
+Please see line 3 of file target/public/cljs-out/dev/reagent/impl/component.cljs
+#+end_quote
+
+Add the =react= and =react-dom= dependencies to your =deps.edn=:
+
+#+begin_src clojure
+{:paths ["src" "resources" "target"]
+ :deps {org.clojure/clojure       {:mvn/version "1.12.0"}
+       org.clojure/clojurescript {:mvn/version "1.11.132"}
+       com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+       reagent/reagent           {:mvn/version "1.2.0"}
+       cljsjs/react             {:mvn/version "17.0.2-0"}
+       cljsjs/react-dom         {:mvn/version "17.0.2-0"}}}
+#+end_src
+
+This should resolve the missing React dependency error. Clean your target directory and restart figwheel.
+* update repl after modifying deps.edn
+
+how do i get the new library into the running cider repl after
+updating deps.edn?
+
+
+In CIDER, you can reload dependencies by using =cider-refresh= (bound
+to =C-c C-x=) or by evaluating =(require
+'[clojure.tools.deps.alpha.repl :refer [refresh]])= followed by
+=(refresh)= in the REPL.
+
+Alternatively, you can restart the REPL completely with
+=cider-restart= (bound to =C-c C-q C-r=).
+
+* auto align clojure code
+the reagent line in this does not align with the prior lines:
+#+begin_src clojure :file deps.edn
+  {:paths ["src" "resources" "target"]
+   :deps  {org.clojure/clojure       {:mvn/version "1.12.0"}
+           org.clojure/clojurescript {:mvn/version "1.11.132"}
+           com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+           reagent/reagent {:mvn/version "1.2.0"}}}
+#+end_src
+
+#+begin_src elisp :file .dir-locals.el
+  ((clojure-mode
+    . ((clojure-align-forms-automatically . t)
+       (clojure-indent-style . :always-align))))
+#+end_src
+
+the map in =deps.edn= does not align when i hit TAB. the map does
+align like this after manually invoking clojure-align:
+
+#+begin_src clojure :file deps.edn
+  {:paths ["src" "resources" "target"]
+   :deps  {org.clojure/clojure       {:mvn/version "1.12.0"}
+           org.clojure/clojurescript {:mvn/version "1.11.132"}
+           com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+           reagent/reagent           {:mvn/version "1.2.0"}}}
+#+end_src
+
+why?  how do i get it to align automatically in spacemacs?
+
+To get automatic alignment in Spacemacs with Clojure code, you need to:
+
+1. Enable =clojure-mode= alignment in your =user-config=:
+#+begin_src elisp
+(use-package clojure-mode
+  :config
+  (setq clojure-indent-style 'align-arguments)
+  (setq clojure-align-forms-automatically t))
+#+end_src
+
+Add this to your =dotspacemacs/user-config= in =.spacemacs=.
+
+If that doesn't work, you can also try binding the align command to save:
+#+begin_src elisp
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'clojure-align nil 'local)))
+#+end_src
+
+The =.dir-locals.el= approach should work too, but sometimes Spacemacs
+configuration takes precedence. Try the =user-config= approach first.
+
+** make emacs align clojure forms on file save
+make spacemacs align clojure forms on file save.
+
+Add this to your init.el:
+
+#+begin_src elisp
+(add-hook 'before-save-hook
+          (lambda ()
+            (when (eq major-mode 'clojure-mode)
+              (indent-region (point-min) (point-max)))))
+#+end_src
+
+This will auto-indent Clojure code when saving files in clojure-mode.
+
+that did not work.  in fact, when the file looks like this
+#+begin_src clojure
+  {:paths ["src" "resources" "target"]
+   :deps  {org.clojure/clojure       {:mvn/version "1.12.0"}
+           org.clojure/clojurescript {:mvn/version "1.11.132"}
+           com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+           reagent/reagent  {:mvn/version "1.2.0"}}}
+#+end_src
+
+the reagent line is not aligned with the rest of the map lines, even
+after i highlight everything and manually invoke =indent-region=.
+
+there's even configuration in dir-locals:
+#+begin_src elisp :file .dir-locals.el
+  ((clojure-mode
+    . ((clojure-align-forms-automatically . t)
+       (clojure-indent-style . :always-align))))
+#+end_src
+
+
+For Clojure map alignment, you might want to try =clojure-align=
+instead. Add this to your init.el:
+
+#+begin_src elisp
+  (add-hook 'before-save-hook
+            (lambda ()
+              (when (eq major-mode 'clojure-mode)
+                (clojure-align (point-min) (point-max)))))
+#+end_src
+
+Also, check that your .dir-locals.el file is properly closed with a
+closing parenthesis:
+
+#+begin_src elisp
+  ((clojure-mode
+    . ((clojure-align-forms-automatically . t)
+       (clojure-indent-style . :always-align))))
+#+end_src
+
+If issues persist, you can manually align using =M-x clojure-align= on
+the region.
