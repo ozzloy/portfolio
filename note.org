@@ -695,3 +695,81 @@ closing parenthesis:
 
 If issues persist, you can manually align using =M-x clojure-align= on
 the region.
+
+* ReactDOM.render no longer supported
+this clojurescript reagent code
+#+begin_src clojure :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio
+    (:require [reagent.dom :as rdom]))
+
+  (defn hello []
+    [:div
+     [:h1 "hello from reagent"]
+     [:p "this is a paragraph"]])
+
+  (defn ^:export init []
+    (js/console.log "hello, figwheel!")
+    (rdom/render [hello] (js/document.getElementById "app")))
+
+  (init)
+#+end_src
+
+gets the following error in the browser console
+#+begin_quote
+Warning: ReactDOM.render is no longer supported in React 18. Use
+createRoot instead. Until you switch to the new API, your app will
+behave as if it's running React 17. Learn more:
+https://reactjs.org/link/switch-to-createroot <anonymous
+code>:1:145535
+#+end_quote
+
+which shows this code snippet
+#+begin_src js
+  // Before
+  import { render } from 'react-dom';
+  const container = document.getElementById('app');
+  render(<App tab="home" />, container);
+
+  // After
+  import { createRoot } from 'react-dom/client';
+  const container = document.getElementById('app');
+  const root = createRoot(container); // createRoot(container!) if you use TypeScript
+  root.render(<App tab="home" />);
+#+end_src
+
+update the clojure code in the same way the javascript was updated.
+
+
+Here's the updated ClojureScript code using =createRoot=:
+
+#+begin_src clojure
+  (ns to.tuo.portfolio
+    (:require [reagent.dom.client :as rdom-client]))
+
+  (defn hello []
+    [:div
+     [:h1 "hello from reagent"]
+     [:p "this is a paragraph"]])
+
+  (defn ^:export init []
+    (js/console.log "hello, figwheel!")
+    (let [root (rdom-client/create-root
+                (js/document.getElementById "app"))]
+      (.render root [hello])))
+
+  (init)
+#+end_src
+
+The main changes are:
+1. Require =reagent.dom.client= instead of =reagent.dom=
+2. Use =create-root= to create a root instance
+3. Call =.render= on the root instance
+
+
+that code does not render anything in the browser and now i see this
+#+begin_quote
+Warning: Functions are not valid as a React child. This may happen if
+you return a Component instead of <Component /> from render. Or maybe
+you meant to call this function rather than return it. <anonymous
+code>:1:145535
+#+end_quote
