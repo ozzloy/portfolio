@@ -819,3 +819,22 @@ img {
     height: auto;    /* maintains aspect ratio */
 }
 #+end_src
+
+* can section tags be nested?
+in html, can a section element be nested in another section element?
+
+
+Yes, =<section>= elements can be nested within other =<section>=
+elements. This is perfectly valid HTML and is commonly used to create
+hierarchical content structure.
+
+Example:
+#+begin_src html
+<section>
+  <h2>Main Topic</h2>
+  <section>
+    <h3>Subtopic</h3>
+    <!-- content -->
+  </section>
+</section>
+#+end_src

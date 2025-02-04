@@ -10,7 +10,8 @@
                  :height        "auto"}}])
 
 (defn about-me []
-  [:<>
+  [:section
+   [:h2 "about me"]
    [:p "
 Computers carry math into physical reality. That is really neat.
 Math offers a clarity of thinking that I find soothing and enjoyable.
@@ -38,11 +39,33 @@ chip with bluetooth to act as a keyboard. As a result, I can now use
 my seeed xiao esp32 c6 as a controller for my keyboard, a capability
 that was absent when I bought the board."]])
 
+(defn future-projects []
+  [:section
+   [:h2 "future projects"]
+   [:section
+    [:h3 "fit"]
+    [:p "an application to help with workout timing and tracking"]]])
+
+(defn skills []
+  [:section
+   [:h2 "skills"]
+   [:p "look at all the skills i got"]])
+
+(defn social []
+  [:section
+   [:h2 "socials"]
+   [:ul
+    [:li [:a {:href "https://linkedin.com/in/ozzloy"} "linkedin"]]
+    [:li [:a {:href "https://github.com/ozzloy"} "github"]]]])
+
 (defn hello []
-  [:<>
+  [:div
    [:h1 "daniel watson"]
    [professional-photo]
-   [about-me]])
+   [about-me]
+   [future-projects]
+   [skills]
+   [social]])
 
 (defonce root (createRoot (js/document.getElementById "app")))
 
