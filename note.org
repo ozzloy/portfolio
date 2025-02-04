@@ -1,6 +1,7 @@
 * portfolio site checklist
 ** TODO include a professional photo
-** TODO include "About Me" Paragraph or professional bio
+** DONE include "About Me" Paragraph or professional bio
+CLOSED: [2025-02-03 Mon]
 ** TODO include section for future projects
 ** TODO include list all known technologies / skills
 ** TODO add github and linkedin links
@@ -787,3 +788,34 @@ you return a Component instead of <Component /> from render. Or maybe
 you meant to call this function rather than return it. <anonymous
 code>:1:145535
 #+end_quote
+* image tag in reagent
+in clojurescript using reagent, make an image tag with src attribute
+set to "example.jpg"
+
+#+begin_src clojure
+[:img {:src "example.jpg"}]
+#+end_src
+
+* where to put images in clojurescript reagent project?
+where should i put a jpg file in a clojurescript reagent project?
+
+In a ClojureScript Reagent project, image files like JPGs typically go
+in the =public= or =resources/public= directory. They can then be
+referenced in your code using relative paths starting from the public
+directory.
+
+* css make image have rounded corners and resize it
+how do i make an html img tag have rounded corners and resize it to be
+smaller with css?
+
+
+Use CSS border-radius for rounded corners and width/height for
+resizing:
+
+#+begin_src css
+img {
+    border-radius: 10px;
+    width: 300px;    /* or use percentage like 50% */
+    height: auto;    /* maintains aspect ratio */
+}
+#+end_src
