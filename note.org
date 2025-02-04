@@ -1,3 +1,17 @@
+* portfolio site checklist
+** TODO include a professional photo
+** TODO include "About Me" Paragraph or professional bio
+** TODO include section for future projects
+** TODO include list all known technologies / skills
+** TODO add github and linkedin links
+** TODO include section for hobbies, writings, cool stuff about you!
+** TODO add contact information
+** TODO project links
+*** TODO include live links, code links
+** TODO include pdf resume link
+** TODO include project walk-through videos (bonus)
+** TODO include testimonials (bonus)
+
 * minimal complete example of hello world clojure app
 show a minimal complete example of a hello world clojure app that uses
 deps.edn
