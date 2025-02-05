@@ -4,7 +4,8 @@
 CLOSED: [2025-02-03 Mon]
 ** TODO include section for future projects
 ** TODO include list all known technologies / skills
-** TODO add github and linkedin links
+** DONE add github and linkedin links
+CLOSED: [2025-02-04 Tue]
 ** TODO include section for hobbies, writings, cool stuff about you!
 ** TODO add contact information
 ** TODO project links
