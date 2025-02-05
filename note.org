@@ -20,12 +20,12 @@ deps.edn
 
 Here's a minimal Clojure hello world app with deps.edn:
 
-#+begin_src clojure
-  ; deps.edn
+#+begin_src clojure :file deps.edn
   {:paths ["src"]
    :deps {org.clojure/clojure {:mvn/version "1.11.1"}}}
+#+end_src
 
-  ; src/hello/core.clj
+#+begin_src clojure :file src/hello/core.clj
   (ns hello.core)
 
   (defn -main []
