@@ -2,7 +2,8 @@
 ** TODO include a professional photo
 ** DONE include "About Me" Paragraph or professional bio
 CLOSED: [2025-02-03 Mon]
-** TODO include section for future projects
+** DONE include section for future projects
+CLOSED: [2025-02-04 Tue]
 ** TODO include list all known technologies / skills
 ** DONE add github and linkedin links
 CLOSED: [2025-02-04 Tue]

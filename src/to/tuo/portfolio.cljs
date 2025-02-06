@@ -45,7 +45,26 @@
    [:h2 "future projects"]
    [:section
     [:h3 "fit"]
-    [:p "workout timing and tracking."]]])
+    [:h4 "workout timing and tracking."]
+    [:p "the way i work out right now is to watch videos on youtube
+     that have someone do the exercise and follow along with their
+     exact timing.  it would be nice to have an app that can display a
+     couple images of the exercise.  it should alsokeep time and beep
+     to let me know when to switch sides, when to do a mini-rest, when
+     to start and stop an exercise completely."]]
+   [:section
+    [:h3 "keyboard"]
+    [:h4 "wireless split column splay bluetooth 32 key modified
+    miryoku with home row mods"]
+    [:p "i want to make a keyboard using my xiao ble board and kmk
+     firmware.  my current keyboard is a wireless split column stagger
+     keyboard.  it would be neat to make a wireless one with columns
+     splayed out to match my natural finger travel more closely.  this
+     would also be a good project for learning about battery power and
+     usb c plugs and cables.  i have already hand soldered a full
+     keyboard and written firmware for a few devices, so i think that
+     part will be easy enough."]]])
+
 
 (defn skills []
   [:section#skills
