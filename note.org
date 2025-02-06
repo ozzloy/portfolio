@@ -4,7 +4,8 @@
 CLOSED: [2025-02-03 Mon]
 ** DONE include section for future projects
 CLOSED: [2025-02-04 Tue]
-** TODO include list all known technologies / skills
+** DONE include list all known technologies / skills
+CLOSED: [2025-02-06 Thu]
 ** DONE add github and linkedin links
 CLOSED: [2025-02-04 Tue]
 ** TODO include section for hobbies, writings, cool stuff about you!
@@ -840,3 +841,570 @@ Example:
   </section>
 </section>
 #+end_src
+
+* optional extension
+make the file ending ".png" the default value, but also can be an
+argument to the function
+#+begin_src clojure
+  (defn local-icon [language]
+    (str "images/" language ".png"))
+#+end_src
+
+* make programming languages look nicer
+with the following html
+#+begin_src html
+  <ul>
+    <li>arm<img src="arm.svg" /></li>
+    <li>bash<img src="bash.svg" /></li>
+    <li>clojure<img src="clojure.svg" /></li>
+  </ul>
+#+end_src
+and css like this
+#+begin_src css
+  #skills>ul {
+    display: flex;
+  }
+
+  #skills>ul>li {
+    display: inline-block;
+  }
+
+  #skills>ul>li>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+#+end_src
+
+make the programming language appear centered over the programming
+logo
+
+Add a div wrapper around the text and image in each li, and put the
+text first:
+
+#+begin_src html
+<ul>
+  <li>
+    <div>
+      <span>arm</span>
+      <img src="arm.svg" />
+    </div>
+  </li>
+  <li>
+    <div>
+      <span>bash</span>
+      <img src="bash.svg" />
+    </div>
+  </li>
+  <li>
+    <div>
+      <span>clojure</span>
+      <img src="clojure.svg" />
+    </div>
+  </li>
+</ul>
+#+end_src
+
+The existing CSS will now center the text above each logo.
+
+** make the list items wrap
+the list of programming goes off the right edge of the window instead
+of wrapping.  make it wrap.
+#+begin_src html
+  <ul>
+    <li><span>arm<span><img src="arm.svg" /></li>
+    <li><span>bash<span><img src="bash.svg" /></li>
+    <li><span>clojure<span><img src="clojure.svg" /></li>
+  </ul>
+#+end_src
+and css like this
+#+begin_src css
+  #skills>ul {
+    display: flex;
+  }
+
+  #skills>ul>li {
+    display: inline-block;
+  }
+
+  #skills>ul>li>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+#+end_src
+
+Add =flex-wrap: wrap;= to the =#skills>ul= rule:
+
+#+begin_src css
+  #skills>ul {
+      display: flex;
+      flex-wrap: wrap;
+  }
+#+end_src
+
+This will make the flex items wrap to the next line when they run out
+of space.
+
+* make them show better on dark background
+some of these logos do not appear well on a dark background.  fix that.
+
+#+begin_src html
+  <ul>
+    <li><div><span>arm</span><img src="arm.svg" /></div></li>
+    <li><div><span>bash</span><img src="bash.svg" /></div></li>
+    <li><div><span>clojure</span><img src="clojure.svg" /></div></li>
+  </ul>
+#+end_src
+
+#+begin_src css
+  #skills>ul { display: flex; }
+
+  #skills>ul>li { display: inline-block; flex-wrap: wrap; }
+
+  #skills>ul>li>div { display: flex; flex-direction: column;
+    align-items: center; justify-content: center; }
+#+end_src
+
+
+
+For logos that don't show well on dark backgrounds, you can add a
+light background or use CSS filters. Here's a fix:
+
+#+begin_src css
+#skills>ul>li img {
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+}
+#+end_src
+
+Also, in your HTML, you should close the =span= tags properly and use
+=div= instead (since your CSS uses =div=):
+
+#+begin_src html
+<ul>
+  <li><div>arm<img src="arm.svg" /></div></li>
+  <li><div>bash<img src="bash.svg" /></div></li>
+  <li><div>clojure<img src="clojure.svg" /></div></li>
+</ul>
+#+end_src
+* not sure what command i just ran
+i just ran some command in spacemacs with a keyboard shortcut.  now i
+am unable to modify a src block in an org mode file.  when i try, i
+see the message "user-error: Cannot modify an area being edited in a
+dedicated buffer".  what did i do?  how do i find out what the command
+was?  how do i make the src block editable again?
+
+It sounds like you accidentally opened the source block in a dedicated
+buffer (probably with =C-c '= or similar) but didn't close it
+properly.
+
+To find the command history:
+- =C-h l= (view-lossage) shows recent commands
+
+To fix this:
+1. Look for any other buffers with the source code open
+2. Close them with =C-c '= or =C-x k=
+3. Try editing the source block again
+
+If you can't find the buffer, you might need to restart Emacs as a
+last resort.
+* turn "-" into " "
+turn all "-" into " " in a string in clojure
+
+
+In Clojure, you can use =clojure.string/replace=:
+
+#+begin_src clojure
+(clojure.string/replace "hello-world-example" #"-" " ")
+;; => "hello world example"
+#+end_src
+
+Or with require:
+#+begin_src clojure
+(require '[clojure.string :as str])
+(str/replace "hello-world-example" #"-" " ")
+#+end_src
+
+* soften border
+how do i make the border blend with the background 50% with css?
+#+begin_src css
+  @property --foreground-color {
+    syntax: '<color>';
+    initial-value: chartreuse;
+    inherits: true;
+  }
+  @property --background-color {
+    syntax: '<color>';
+    initial-value: #111;
+    inherits: true;
+  }
+
+  ,* {
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+  #skills>ul>li {
+    display: inline-block;
+    margin: 1em;
+    width: 140px;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1em;
+  }
+#+end_src
+
+using the var "--foreground-color"?
+
+
+Add =border-color= with =opacity= using =rgba()=. Here's how:
+
+#+begin_src css
+#skills>ul>li {
+    /* ... other properties ... */
+    border: 1px solid rgba(var(--foreground-color), 0.5);
+}
+#+end_src
+
+Or using the modern way with =color-mix=:
+
+#+begin_src css
+    #skills>ul>li {
+        /* ... other properties ... */
+        border: 1px solid
+                color-mix(in srgb,
+                          var(--foreground-color) 50%,
+                          transparent);
+    }
+#+end_src
+
+* one css var based on other css var?
+#+begin_src css
+  @property --light-color {
+    syntax: '<color>';
+    initial-value: #eee;
+    inherits: true;
+  }
+  @property --foreground-color {
+    syntax: '<color>';
+    initial-value: #eee;
+    inherits: true;
+  }
+#+end_src
+make it so =--foreground-color='s initial value is =--light-color=.
+
+can this be done?
+
+
+Yes, it can be done. You can reference custom properties as initial
+values. Here's how:
+
+#+begin_src css
+  @property --foreground-color {
+    syntax: '<color>';
+    initial-value: var(--light-color);
+    inherits: true;
+  }
+#+end_src
+
+This will make =--foreground-color= initially take the value of
+=--light-color=.
+
+that did not work.  instead, color is set to white, and the inspector
+says "--foreground-color" is not set.
+
+
+You're right - I apologize for the incorrect information. According to
+the CSS specification, =@property= rules cannot reference other custom
+properties in their =initial-value=. The =initial-value= must be a
+direct, valid value of the specified syntax type.
+
+This is a limitation of the =@property= rule. You'll need to either:
+1. Set both properties to the same literal value, or
+2. Handle the relationship between these properties in your regular
+   CSS rules instead
+
+i want to have a way of explicitly specifying "light" color for the
+background of icons that need a light background.  i also want a
+variable for "foreground-color" that can change to match the system
+theme.  i want the foreground-color to initially start with the light
+color, and then change based on the system theme.
+
+
+Here's a solution using regular CSS custom properties (without
+@property):
+
+#+begin_src css
+  :root {
+    --light-color: #eee;
+    --foreground-color: var(--light-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-color: #333;
+    }
+  }
+#+end_src
+
+This sets up --light-color as a constant and --foreground-color
+initially matches it, but will change to dark in dark mode. No need
+for @property rules in this case.
+
+* how to set color as early as possible, and have it overridden
+i want to set the color for my page as soon as possible, so i have
+inline css to set the color.
+#+begin_src html
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <style>
+        body {
+          color: white;
+          background-color: black;
+        }
+      </style>
+      <link rel="stylesheet" type="text/css"  href="css/style.css">
+      <title>figwheel main example</title>
+    </head>
+    <body>
+      <div id="app"></div>
+      <script src="/cljs-out/dev-main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+i also want to later change the color when i load css, so i have this
+rule
+#+begin_src css
+  @media (prefers-color-scheme: light) {
+    :root {
+      --foreground-color: var(--night-color);
+      --backround-color: var(--light-color);
+    }
+  }
+  ,* {
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+  }
+#+end_src
+
+the rule at the end for setting =color: var(--foreground-color);= and
+=background-color: var(--background-color);= is being overridden by
+the inline rule.  how do i both set a color as early as possible, and
+later change it based on things like media query?
+
+To achieve both immediate color setting and later flexibility, you can
+use CSS custom properties (variables) in your inline style and
+redefine them later. Here's how:
+
+#+begin_src html
+  <style>
+    :root {
+      --foreground-color: white;
+      --background-color: black;
+    }
+    body {
+      color: var(--foreground-color);
+      background-color: var(--background-color);
+    }
+  </style>
+#+end_src
+
+Then in your CSS file, you can redefine the variables:
+
+#+begin_src css
+  @media (prefers-color-scheme: light) {
+    :root {
+      --foreground-color: var(--night-color);
+      --background-color: var(--light-color);
+    }
+  }
+#+end_src
+
+This way you get immediate color application while maintaining the
+ability to change them dynamically later.
+
+* css color transition
+when i change my system color preference, the page colors change,
+but they change immediately instead of transitioning slowly.  why?
+#+begin_src html
+  <!doctype html>
+  <html>
+
+  <head>
+      <meta charset="UTF-8" />
+      <style>
+          @property --foreground-color {
+              syntax: '<color>';
+              inherits: true;
+          }
+
+          @property --background-color {
+              syntax: '<color>';
+              inherits: true;
+          }
+
+          :root {
+              --light-color: #eee;
+              --night-color: #111;
+              --foreground-color: var(--light-color);
+              --background-color: var(--night-color);
+              transition: --foreground-color 5s ease,
+                  --background-color 5s ease;
+          }
+
+          body {
+              color: var(--foreground-color);
+              background-color: var(--background-color);
+          }
+      </style>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+      <title>daniel watson's portfolio</title>
+  </head>
+
+  <body>
+      <div id="app"></div>
+      <script src="/cljs-out/dev-main.js"></script>
+  </body>
+
+  </html>
+#+end_src
+
+#+begin_src css
+  @media (prefers-color-scheme: light) {
+    :root {
+      --foreground-color: var(--night-color);
+      --background-color: var(--light-color);
+    }
+  }
+
+  :root {
+  }
+
+  ,* {
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+  }
+
+  h1 {
+    font-size: xx-large;
+  }
+
+  #skills>ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #skills>ul>li {
+    display: inline-block;
+    margin: 1em;
+    width: 140px;
+    border: 1px
+            solid
+            color-mix(in srgb,
+                      var(--foreground-color) 20%,
+                      transparent);
+    border-radius: 10px;
+    padding: 1em;
+  }
+
+  #skills>ul>li>div>span {
+    padding: 0.5em;
+  }
+
+  #skills>ul>li>div>img {
+    border-radius: 10%;
+    padding: 4px;
+  }
+
+  #skills>ul>li>div>img.night {
+    background-color: var(--night-color);
+  }
+
+  #skills>ul>li>div>img.light {
+    background-color: var(--light-color);
+  }
+
+  #skills>ul>li>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+#+end_src
+
+i want to make it so changes to the vars =--foreground-color= and
+=--background-color= are done with a smooth transition.
+
+The issue is that the CSS custom property transitions aren't working
+because you need to add =initial-value= to your =@property=
+declarations. Here's the fix:
+
+#+begin_src css
+@property --foreground-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #eee; /* Add this */
+}
+
+@property --background-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #111; /* Add this */
+}
+#+end_src
+
+Without initial values, the browser doesn't know how to interpolate
+between the colors during the transition. Adding these values enables
+the smooth transition effect you're looking for.
+
+* set transition in property
+is there a way to set the transition rule inside the property ruleset
+for =--foreground-color= equivalent to this?
+#+begin_src css
+  @property --foreground-color {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: #eee;
+      /* put transition rules here */
+  }
+
+  @property --background-color {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: #111;
+      /* put transition rules here */
+  }
+
+  :root {
+      --light-color: #eee;
+      --night-color: #111;
+      /* move this from :root into @property rules above */
+      transition: --foreground-color 1s ease,
+          --background-color 1s ease;
+  }
+#+end_src
+
+
+
+No, transitions cannot be defined within =@property=
+rules. Transitions must be defined in regular CSS rulesets (like
+=:root= or other selectors) using the =transition= property as you've
+shown. The =@property= syntax only allows for defining the property's
+characteristics like syntax, inheritance, and initial value.
