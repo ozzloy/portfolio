@@ -1,0 +1,53 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circuit board pattern -->
+  <defs>
+    <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 5 0 L 5 20 M 15 0 L 15 20 M 0 5 L 20 5 M 0 15 L 20 15" 
+            stroke="#2d3436" 
+            stroke-width="0.5" 
+            fill="none" 
+            opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Main background circle -->
+  <circle cx="100" cy="100" r="90" 
+          fill="#2d3436"/>
+  
+  <!-- Circuit pattern overlay -->
+  <circle cx="100" cy="100" r="90" 
+          fill="url(#circuit)"/>
+  
+  <!-- Central hex shape suggesting a processor -->
+  <path d="M 100 40 L 150 70 L 150 130 L 100 160 L 50 130 L 50 70 Z" 
+        fill="#00cec9" 
+        stroke="#81ecec" 
+        stroke-width="2"/>
+  
+  <!-- Text elements -->
+  <text x="100" y="95" 
+        font-family="monospace" 
+        font-size="32" 
+        font-weight="bold" 
+        fill="white" 
+        text-anchor="middle">x86</text>
+  
+  <text x="100" y="125" 
+        font-family="monospace" 
+        font-size="14" 
+        fill="white" 
+        text-anchor="middle">ASSEMBLY</text>
+
+  <!-- Binary decoration -->
+  <text x="75" y="85" 
+        font-family="monospace" 
+        font-size="8" 
+        fill="#81ecec" 
+        opacity="0.6">10110</text>
+  
+  <text x="125" y="135" 
+        font-family="monospace" 
+        font-size="8" 
+        fill="#81ecec" 
+        opacity="0.6">01001</text>
+</svg>

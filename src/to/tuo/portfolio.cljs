@@ -1,7 +1,8 @@
 (ns to.tuo.portfolio
   (:require
    ["react-dom/client" :refer [createRoot]]
-   [reagent.core :as r]))
+   [reagent.core :as r]
+   [clojure.string :as str]))
 
 (defn professional-photo []
   [:img#professional-photo
@@ -40,6 +41,12 @@
     controller for my keyboard, a capability that was absent when I
     bought the board."]])
 
+(defn projects []
+  [:section#projects
+   [:h2 "projects"]
+   [:section
+    [:h3 "i'll brb"]]])
+
 (defn future-projects []
   [:section#future-projects
    [:h2 "future projects"]
@@ -65,11 +72,112 @@
      keyboard and written firmware for a few devices, so i think that
      part will be easy enough."]]])
 
+(def programming-language-badge-width "100px")
+(defn devicon [language wordmark?]
+  (let [protocol "https"
+        host     "cdn.jsdelivr.net"
+        path     (str
+                  "/gh/devicons/devicon@latest/icons/" language "/")
+        filename (str language
+                      "-original"
+                      (if wordmark? "-wordmark" "")
+                      ".svg")]
+    (str protocol "://" host path filename)))
+
+(defn local-icon [language extension]
+  (str "images/" language "." extension))
+
+(defn- icon-item [language src background]
+  [:li
+   [:div
+    [:span (str/replace language #"-" " ")]
+    [:img
+     {:src   src
+      :class background
+      :style {:width  programming-language-badge-width
+              :height "auto"}}]]])
+
+(defn item-local-icon
+  ([language] (item-local-icon language "png"))
+  ([language extension]
+   (item-local-icon language extension "night"))
+  ([language extension background]
+   [icon-item
+    language (local-icon language extension) background]))
+
+(defn item-devicon
+  ([language] (item-devicon language "night"))
+  ([language background]
+   (item-devicon language background false))
+  ([language background wordmark?]
+   [icon-item language (devicon language wordmark?) background]))
 
 (defn skills []
   [:section#skills
    [:h2 "skills"]
-   [:p "look at all the skills i got"]])
+   [:h3 "programming languages"]
+   "these are all languages that i've helped other people with, or i
+    have written a lot of for myself.  after working with this many
+    languages, picking up a new one is relatively easy."
+   [:ul
+    [item-local-icon "arm" "svg" "light"]
+    [item-devicon "arduino"]
+    [item-devicon "awk" "light" "wordmark"]
+    [item-devicon "bash" "light"]
+    [item-devicon "c"]
+    [item-devicon "cplusplus"]
+    [item-devicon "clojure"]
+    [item-devicon "clojurescript"]
+    [item-local-icon "common-lisp"]
+    [item-devicon "elm"]
+    [item-devicon "emacs" "light"]
+    [item-local-icon "guile" "svg" "light"]
+    [item-devicon "haskell"]
+    [item-devicon "java"]
+    [item-devicon "javascript"]
+    [item-local-icon "ladder-diagram"]
+    [item-devicon "matlab"]
+    [item-local-icon "MIPS" "svg" "light"]
+    [item-devicon "ocaml"]
+    [item-local-icon "octave"]
+    [item-local-icon "openscad"]
+    [item-devicon "prolog"]
+    [item-devicon "python"]
+    [item-local-icon "racket" "svg"]
+    [item-devicon "ruby"]
+    [item-local-icon "scratch" "svg"]
+    [item-local-icon "Snap!" "svg"]
+    [item-local-icon "x86" "svg"]]
+
+   [:h3 "frameworks and libraries and tools"]
+   [:ul
+    [item-devicon "apache"]
+    [item-devicon "bitbucket"]
+    [item-devicon "css3"]
+    [item-devicon "debian"]
+    [item-devicon "express" "light"]
+    [item-devicon "flask" "light"]
+    [item-devicon "gcc"]
+    [item-devicon "git"]
+    [item-devicon "gitlab"]
+    [item-devicon "html5"]
+    [item-devicon "latex" "light"]
+    [item-devicon "linux"]
+    [item-devicon "mocha"]
+    [item-devicon "mysql"]
+    [item-devicon "nodejs"]
+    [item-devicon "npm" "night" true]
+    [item-devicon "postgresql"]
+    [item-devicon "pypi"]
+    [item-devicon "pytest"]
+    [item-devicon "raspberrypi"]
+    [item-devicon "react"]
+    [item-devicon "sqlite"]
+    [item-devicon "sequelize"]
+    [item-devicon "sqlalchemy" "light"]
+    [item-devicon "ssh" "light"]
+    [item-devicon "ubuntu"]
+    [item-devicon "vitejs"]]])
 
 (defn social []
   [:section#social
