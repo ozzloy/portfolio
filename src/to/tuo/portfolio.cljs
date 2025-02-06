@@ -192,9 +192,9 @@
    [:section
     [:h3 "climbing"]
     [:p "my mom and dad tell me that if they could not find me when i
-was a little kid, they would look up.  climbing has puzzle solving and
-physical strength wrapped together.  the same route looks different
-depending on who climbs it."]]
+     was a little kid, they would look up.  climbing has puzzle
+     solving and physical strength wrapped together.  the same route
+     looks different depending on who climbs it."]]
    [:section
     [:h3 "juggling"]
     [:p "i can juggle 5-ball.  i made a "
@@ -210,15 +210,18 @@ depending on who climbs it."]]
     [:a {:href "mailto:ozzloy@each.do"} "email"]]])
 
 (defn content []
-  [:div
-   [:h1 "daniel watson"]
-   [professional-photo]
+  [:<>
+   [:header
+    [professional-photo]
+    [:div
+     [:h1 "daniel watson"]
+     [contact]
+     [social]]]
    [about-me]
-   [future-projects]
+   [projects]
    [skills]
-   [social]
    [hobbies]
-   [contact]])
+   [future-projects]])
 
 (defonce root (createRoot (js/document.getElementById "app")))
 
