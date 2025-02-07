@@ -50,9 +50,25 @@
      [:li [:a {:href "https://ill-brb.each.do/"} "live"]]
      [:li [:a {:href "https://github.com/ozzloy/solo-ill-brb"} "code"]]]
     [:p "In this project, me and my pair programming partner created a
+     rental site, much like AirBnB.  For the backend, we used
+     sequelize which handles JSON requests and serves JSON.  The
+     frontend uses React Vite.  For client side state management,
+     Redux greatly simplified and centralized code, especially code
+     for making requests to the backend and dealing with responses."]
+    [:img {:src "images/projects/ill-brb.png"
+           :style {:border "2px solid AccentColor"
+                   :border-radius "10px"
+                   :width "500px"}}]]
+   [:section
+    [:h3 "where da gas at?"]
+    [:ul
+     [:li [:a {:href "https://where-da-gas-at.each.do/"} "live"]]
+     [:li [:a {:href "https://github.com/ozzloy/where-da-gas-at"}
+           "code"]]]
+    [:p "In this project, me and my pair programming partner created a
      rental site, much like AirBnB.  For the backend, we used sequelize
      which handles JSON requests and serves JSON."]
-    [:img {:src "images/projects/ill-brb.png"
+    [:img {:src "images/projects/where-da-gas-at.png"
            :style {:border "2px solid AccentColor"
                    :border-radius "10px"
                    :width "500px"}}]]])
