@@ -45,7 +45,17 @@
   [:section#projects
    [:h2 "projects"]
    [:section
-    [:h3 "i'll brb"]]])
+    [:h3 "i'll brb"]
+    [:ul
+     [:li [:a {:href "https://ill-brb.each.do/"} "live"]]
+     [:li [:a {:href "https://github.com/ozzloy/solo-ill-brb"} "code"]]]
+    [:p "In this project, me and my pair programming partner created a
+     rental site, much like AirBnB.  For the backend, we used sequelize
+     which handles JSON requests and serves JSON."]
+    [:img {:src "images/projects/ill-brb.png"
+           :style {:border "2px solid AccentColor"
+                   :border-radius "10px"
+                   :width "500px"}}]]])
 
 (defn future-projects []
   [:section#future-projects
