@@ -2,45 +2,46 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <style>
-        @property --foreground-color {
-            syntax: '<color>';
-            inherits: true;
-            initial-value: #eee;
-        }
+  <meta charset="UTF-8" />
+  <style>
+    @property --foreground-color {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: #eee;
+    }
 
-        @property --background-color {
-            syntax: '<color>';
-            inherits: true;
-            initial-value: #111;
-        }
+    @property --background-color {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: #111;
+    }
 
-        @property --accent-color {
-            syntax: '<color>';
-            inherits: true;
-            initial-value: chartreuse;
-        }
+    @property --accent-color {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: chartreuse;
+    }
 
-        :root {
-          --light-color: #eee;
-          --night-color: #111;
-          transition:
-            --foreground-color 1s ease,
-            --background-color 1s ease,
-            --accent-color 1s ease;
-          color: var(--foreground-color);
-          background-color: var(--background-color);
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-    <title>daniel watson's portfolio</title>
+    :root {
+      --light-color: #eee;
+      --night-color: #111;
+      transition:
+        --foreground-color 1s ease,
+        --background-color 1s ease,
+        --accent-color 1s ease;
+      color: var(--foreground-color);
+      background-color: var(--background-color);
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <title>daniel watson's portfolio</title>
 </head>
 
 <body>
-    <div id="app"></div>
-    <script src="/cljs-out/dev-main.js"></script>
+  <div id="app"></div>
+  <script src="/cljs-out/dev-main.js"></script>
 </body>
 
 </html>

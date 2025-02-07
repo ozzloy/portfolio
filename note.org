@@ -1519,3 +1519,76 @@ Yes, you can use the =@supports= feature query:
   }
 }
 #+end_src
+
+* make links look better with css
+make links look better with css.  look good with light or dark theme.
+
+
+Here's a simple CSS snippet for attractive links that work well in
+both light and dark themes:
+
+#+begin_src css
+a {
+  color: #0366d6;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover {
+  border-bottom-color: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #58a6ff;
+  }
+}
+#+end_src
+
+This gives subtle underline-on-hover effect and appropriate colors for
+both themes.
+
+Here's a concise CSS snippet to enhance link styling:
+
+#+begin_src css
+  a {
+    color: #0066cc;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  a:hover {
+    border-bottom-color: #0066cc;
+  }
+#+end_src
+
+This creates clean links with a subtle underline animation on
+hover. Adjust colors to match your design.
+
+* configure webbeautify
+in spacemacs, can i configure webbeautify to indent with 2 spaces?
+and can i have it wrap code at 70 columns?
+
+
+Yes, you can configure web-beautify in Spacemacs. Add this to your
+=dotspacemacs/user-config=:
+
+#+begin_src lisp
+(setq web-beautify-args '("-s" "2" "-w" "70"))
+#+end_src
+
+This sets 2-space indentation (=-s 2=) and wraps at 70 columns (=-w
+70=).
+
+Yes, you can configure web-beautify in Spacemacs to use 2
+spaces for indentation. Add this to your =dotspacemacs/user-config= in
+your =.spacemacs= file:
+
+#+begin_src lisp
+(setq web-beautify-args '("-s" "2"))
+#+end_src
+
+This sets the indentation to 2 spaces for js-beautify, which
+web-beautify uses under the hood.
