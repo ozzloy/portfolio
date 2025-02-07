@@ -65,9 +65,13 @@
      [:li [:a {:href "https://where-da-gas-at.each.do/"} "live"]]
      [:li [:a {:href "https://github.com/ozzloy/where-da-gas-at"}
            "code"]]]
-    [:p "In this project, me and my pair programming partner created a
-     rental site, much like AirBnB.  For the backend, we used sequelize
-     which handles JSON requests and serves JSON."]
+    [:p "&quot;where da gas at?&quot; This app helps users track gas
+     stations and prices.  I took leadership of a group of 4 to
+     complete this project.  Team members looked to me for guidance
+     about what to work on.  I assessed their skills and constraints
+     to give tasks that made the most of them.  I also integrated all
+     the work frequently by rebasing their work into a single line of
+     history."]
     [:img {:src "images/projects/where-da-gas-at.png"
            :style {:border "2px solid AccentColor"
                    :border-radius "10px"
