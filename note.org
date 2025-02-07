@@ -1426,3 +1426,27 @@ In CSS, you can use the =accent-color= system color keyword like this:
 This works in modern browsers but support may vary. For broader
 compatibility, you might need to use platform-specific solutions or
 JavaScript APIs.
+
+* set css variable if AccentColor exists
+set the css variable =--accent-color= to the value in =AccentColor= if
+it is available.  otherwise, leave it.
+#+begin_src css
+  @property --accent-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: chartreuse;
+  }
+#+end_src
+
+
+Here's a CSS solution to set =--accent-color= conditionally based on
+=AccentColor=:
+
+#+begin_src css
+:root {
+  --accent-color: var(--accent-color, AccentColor, initial);
+}
+#+end_src
+
+This will use =AccentColor= if available, otherwise keep the initial
+value (chartreuse).

@@ -33,7 +33,7 @@ header {
   border: 1px
           solid
           color-mix(in srgb,
-                    AccentColor 20%,
+                    var(--accent-color) 50%,
                     transparent);
   border-radius: 10px;
   padding: 1em;

@@ -16,12 +16,18 @@
             initial-value: #111;
         }
 
+        @property --accent-color {
+            syntax: '<color>';
+            inherits: true;
+            initial-value: chartreuse;
+        }
+
         :root {
-            --light-color: #eee;
-            --night-color: #111;
             transition:
                 --foreground-color 1s ease,
-                --background-color 1s ease;
+                --background-color 1s ease,
+                --accent-color 1s ease;
+            --accent-color: var(--accent-color, AccentColor, initial);
         }
 
         body {
