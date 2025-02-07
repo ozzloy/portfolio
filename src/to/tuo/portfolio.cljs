@@ -85,7 +85,7 @@
     (str protocol "://" host path filename)))
 
 (defn local-icon [language extension]
-  (str "images/" language "." extension))
+  (str "images/icons/" language "." extension))
 
 (defn- icon-item [language src background]
   [:li

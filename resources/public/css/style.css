@@ -21,42 +21,42 @@ header {
   padding: 1em;
 }
 
-#skills>ul {
+#skills>section>ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-#skills>ul>li {
+#skills>section>ul>li {
   display: inline-block;
   margin: 1em;
   width: 140px;
   border: 1px
           solid
           color-mix(in srgb,
-                    var(--foreground-color) 20%,
+                    AccentColor 20%,
                     transparent);
   border-radius: 10px;
   padding: 1em;
 }
 
-#skills>ul>li>div>span {
+#skills>section>ul>li>div>span {
   padding: 0.5em;
 }
 
-#skills>ul>li>div>img {
+#skills>section>ul>li>div>img {
   border-radius: 10%;
   padding: 4px;
 }
 
-#skills>ul>li>div>img.night {
+#skills>section>ul>li>div>img.night {
   background-color: var(--night-color);
 }
 
-#skills>ul>li>div>img.light {
+#skills>section>ul>li>div>img.light {
   background-color: var(--light-color);
 }
 
-#skills>ul>li>div {
+#skills>section>ul>li>div {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1408,3 +1408,21 @@ rules. Transitions must be defined in regular CSS rulesets (like
 =:root= or other selectors) using the =transition= property as you've
 shown. The =@property= syntax only allows for defining the property's
 characteristics like syntax, inheritance, and initial value.
+
+* get accent color through css
+how do i get the accent color of the system through css?
+
+
+In CSS, you can use the =accent-color= system color keyword like this:
+
+#+begin_src css
+  element {
+    color: AccentColor;
+    /* or */
+    background-color: AccentColor;
+  }
+#+end_src
+
+This works in modern browsers but support may vary. For broader
+compatibility, you might need to use platform-specific solutions or
+JavaScript APIs.
