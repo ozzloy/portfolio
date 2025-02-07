@@ -56,6 +56,10 @@ header {
   background-color: var(--light-color);
 }
 
+#skills>section>ul>li>div>img.none {
+  background-color: #0000;
+}
+
 #skills>section>ul>li>div {
   display: flex;
   flex-direction: column;

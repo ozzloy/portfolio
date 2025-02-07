@@ -130,13 +130,13 @@
 (defn item-local-icon
   ([language] (item-local-icon language "png"))
   ([language extension]
-   (item-local-icon language extension "night"))
+   (item-local-icon language extension "none"))
   ([language extension background]
    [icon-item
     language (local-icon language extension) background]))
 
 (defn item-devicon
-  ([language] (item-devicon language "night"))
+  ([language] (item-devicon language "none"))
   ([language background]
    (item-devicon language background false))
   ([language background wordmark?]
@@ -198,7 +198,7 @@
      [item-devicon "mocha"]
      [item-devicon "mysql"]
      [item-devicon "nodejs"]
-     [item-devicon "npm" "night" true]
+     [item-devicon "npm" "none" true]
      [item-devicon "postgresql"]
      [item-devicon "pypi"]
      [item-devicon "pytest"]

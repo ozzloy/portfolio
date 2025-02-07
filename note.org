@@ -1450,3 +1450,34 @@ Here's a CSS solution to set =--accent-color= conditionally based on
 
 This will use =AccentColor= if available, otherwise keep the initial
 value (chartreuse).
+
+* update accent color
+#+begin_src css
+  @media (prefers-color-scheme: light) {
+    :root {
+      --foreground-color: var(--night-color);
+      --background-color: var(--light-color);
+    }
+  }
+#+end_src
+
+this updates the foreground and background color when the color scheme
+switches between light and dark.  how do i update the =--accent-color=
+css var when the accent color changes?  is there a media query for
+accent color?
+
+There isn't a direct media query for system accent colors. However,
+you can use the relatively new CSS property =accent-color= with the
+keyword =system-accent-color= to automatically match the system's
+accent color:
+
+#+begin_src css
+:root {
+  --accent-color: AccentColor; /* or system-accent-color */
+}
+#+end_src
+
+Note that browser support for this is still limited and it's
+relatively new. For broader compatibility, you might need to use
+JavaScript to detect system accent color changes and update your CSS
+variables accordingly.
