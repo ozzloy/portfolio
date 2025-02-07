@@ -1,3 +1,10 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-color: var(--light-color);
+    --background-color: var(--night-color);
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --foreground-color: var(--night-color);
@@ -5,12 +12,19 @@
   }
 }
 
-:root {
+@supports (color: AccentColor) {
+  :root {
+    --accent-color: AccentColor;
+  }
+}
+
+@supports not (color: AccentColor) {
+  :root {
+    --accent-color: #0066cc;
+  }
 }
 
 * {
-  color: var(--foreground-color);
-  background-color: var(--background-color);
   margin: 0;
   padding: 0;
 }

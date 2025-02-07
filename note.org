@@ -1481,3 +1481,41 @@ Note that browser support for this is still limited and it's
 relatively new. For broader compatibility, you might need to use
 JavaScript to detect system accent color changes and update your CSS
 variables accordingly.
+
+* update css var when accentcolor changes
+update the css var =--accent-color= when AccentColor changes using
+pure css.
+
+
+Use the =@media= query with =(prefers-color-scheme)= to detect system
+accent color changes:
+
+#+begin_src css
+  @media (prefers-color-scheme: light) {
+    :root {
+      --accent-color: AccentColor;
+    }
+  }
+#+end_src
+
+This will automatically update when the system accent color
+changes. Note that =AccentColor= support varies by browser.
+
+is there a way in pure css to detect whether accentcolor is supported
+in the current browser?
+
+Yes, you can use the =@supports= feature query:
+
+#+begin_src css
+@supports (color: AccentColor) {
+  :root {
+    --accent-color: AccentColor;
+  }
+}
+
+@supports not (color: AccentColor) {
+  :root {
+    --accent-color: #0066cc; /* fallback color */
+  }
+}
+#+end_src

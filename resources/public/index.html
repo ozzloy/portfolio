@@ -23,16 +23,14 @@
         }
 
         :root {
-            transition:
-                --foreground-color 1s ease,
-                --background-color 1s ease,
-                --accent-color 1s ease;
-            --accent-color: var(--accent-color, AccentColor, initial);
-        }
-
-        body {
-            color: var(--foreground-color);
-            background-color: var(--background-color);
+          --light-color: #eee;
+          --night-color: #111;
+          transition:
+            --foreground-color 1s ease,
+            --background-color 1s ease,
+            --accent-color 1s ease;
+          color: var(--foreground-color);
+          background-color: var(--background-color);
         }
     </style>
     <link rel="stylesheet" type="text/css" href="css/style.css">
