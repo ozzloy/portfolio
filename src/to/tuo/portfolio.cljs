@@ -56,7 +56,22 @@
      Redux greatly simplified and centralized code, especially code
      for making requests to the backend and dealing with responses."]
     [:img {:src "images/projects/ill-brb.png"
-           :style {:border "2px solid AccentColor"
+           :style {:border "2px solid var(--accent-color)"
+                   :border-radius "10px"
+                   :width "500px"}}]]
+   [:section
+    [:h3 "bingo"]
+    [:ul
+     [:li [:a {:href "https://bingo.each.do/"} "live"]]
+     [:li [:a {:href "https://gitea.com/ozzloy/b1ng0"}
+           "code"]]]
+    [:p "During the covid lock downs, I made this site so I could
+     continue playing bingo with my grampa over the internet through
+     lockdowns.  It uses websockets in clojurescript to coordinate
+     shared state for all connected players.  The frontend updates via
+     Reagent, the clojurescript bridge to React."]
+    [:img {:src "images/projects/where-da-gas-at.png"
+           :style {:border "2px solid var(--accent-color)"
                    :border-radius "10px"
                    :width "500px"}}]]
    [:section
@@ -73,7 +88,7 @@
      the work frequently by rebasing their work into a single line of
      history."]
     [:img {:src "images/projects/where-da-gas-at.png"
-           :style {:border "2px solid AccentColor"
+           :style {:border "2px solid var(--accent-color)"
                    :border-radius "10px"
                    :width "500px"}}]]])
 
