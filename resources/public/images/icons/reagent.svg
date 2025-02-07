@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="#5F7FBF" />
+
+  <!-- Outer electron orbit (React-like) -->
+  <ellipse cx="50" cy="50" rx="40" ry="15" fill="none" stroke="white" stroke-width="2" transform="rotate(30 50 50)" />
+  <ellipse cx="50" cy="50" rx="40" ry="15" fill="none" stroke="white" stroke-width="2" transform="rotate(150 50 50)" />
+
+  <!-- Lambda symbol (ClojureScript) -->
+  <path d="M30 20 L45 30 L70 77 M30 77 L53 49"
+        fill="none"
+        stroke="#96CA4B"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round" />
+
+  <!-- Electron dot -->
+  <circle cx="50" cy="15" r="4" fill="white">
+    <animateMotion dur="3s" repeatCount="indefinite"
+      path="M0 0 A40 15 0 1 1 0 0.1" transform="rotate(30 50 50)" />
+  </circle>
+</svg>

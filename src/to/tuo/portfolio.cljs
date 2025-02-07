@@ -204,6 +204,7 @@
      [item-devicon "pytest"]
      [item-devicon "raspberrypi"]
      [item-devicon "react"]
+     [item-local-icon "reagent" "svg"]
      [item-devicon "sqlite" "light"]
      [item-devicon "sequelize"]
      [item-devicon "sqlalchemy" "light"]
