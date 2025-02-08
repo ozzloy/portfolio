@@ -1593,3 +1593,54 @@ your =.spacemacs= file:
 
 This sets the indentation to 2 spaces for js-beautify, which
 web-beautify uses under the hood.
+
+* page layout
+i have html structure like this:
+#+begin_src html
+  <main>
+    <section id="about-me">about me</section>
+    <section id="projects">projects</section>
+    <section id="skills">skills</section>
+    <section id="hobbies">hobbies</section>
+    <section id="future-projects">future projects</section>
+  </main>
+#+end_src
+
+write some css to make it look good.
+
+Here's a clean, responsive CSS for your structure:
+
+#+begin_src css
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 2rem 1rem;
+  }
+}
+#+end_src
+
+This CSS provides:
+- Centered content with max-width
+- Full-height sections
+- Alternating backgrounds
+- Subtle shadows
+- Mobile responsiveness
+- Clean spacing

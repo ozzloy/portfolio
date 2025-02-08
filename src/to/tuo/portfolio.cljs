@@ -294,12 +294,14 @@
     [:div
      [:h1 "daniel watson"]
      [contact]
-     [social]]]
-   [about-me]
-   [projects]
-   [skills]
-   [hobbies]
-   [future-projects]])
+     [social]
+     [resume]]]
+   [:main
+    [about-me]
+    [projects]
+    [skills]
+    [hobbies]
+    [future-projects]]])
 
 (defonce root (createRoot (js/document.getElementById "app")))
 
