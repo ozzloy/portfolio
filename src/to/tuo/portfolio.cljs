@@ -70,10 +70,11 @@
      lockdowns.  It uses websockets in clojurescript to coordinate
      shared state for all connected players.  The frontend updates via
      Reagent, the clojurescript bridge to React."]
-    [:img {:src "images/projects/where-da-gas-at.png"
-           :style {:border "2px solid var(--accent-color)"
-                   :border-radius "10px"
-                   :width "500px"}}]]
+    [:a {:href "https://bingo.each.do/"}
+     [:img {:src "images/projects/bingo.png"
+            :style {:border "2px solid var(--accent-color)"
+                    :border-radius "10px"
+                    :width "500px"}}]]]
    [:section
     [:h3 "where da gas at?"]
     [:ul
