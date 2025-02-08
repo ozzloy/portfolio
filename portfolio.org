@@ -82,3 +82,4 @@
   + configured exim
 * commits to linux kernel
 * commit to git
+* commit to emacs
