@@ -44,6 +44,29 @@
 (defn projects []
   [:section#projects
    [:h2 "projects"]
+   [:p "all of these projects are self hosted on a debian vm running
+    apache as a reverse proxy front to various each project's front
+    and back, such as Flask in Python, httpkit in Clojure, and Express
+    in Javascript."]
+   [:section
+    [:h3 "tax"]
+    [:ul
+     [:li [:a {:href "https://tax.each.do/"} "live"]]
+     [:li [:a {:href "https://github.com/ozzloy/tax-back"}
+           "backend code"]]
+     [:li [:a {:href "https://github.com/ozzloy/tax-front"}
+           "frontend code"]]]
+    [:p "In this project, me and my pair programming partner created a
+     rental site, much like AirBnB.  For the backend, we used
+     sequelize which handles JSON requests and serves JSON.  The
+     frontend uses React Vite.  For client side state management,
+     Redux greatly simplified and centralized code, especially code
+     for making requests to the backend and dealing with responses."]
+    [:a {:href "https://tax.each.do/"}
+     [:img {:src "images/projects/tax.png"
+            :style {:border "2px solid var(--accent-color)"
+                    :border-radius "10px"
+                    :width "500px"}}]]]
    [:section
     [:h3 "i'll brb"]
     [:ul
