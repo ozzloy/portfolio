@@ -281,6 +281,11 @@
    [:p
     [:a {:href "mailto:ozzloy@each.do"} "email"]]])
 
+(defn resume []
+  [:section#resume
+   [:h2 "resume"]
+   [:a {:href "resume/Daniel Watson Web Resume.pdf"} "web dev"]])
+
 (defn content []
   [:<>
    [:header
