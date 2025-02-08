@@ -78,10 +78,11 @@
      frontend uses React Vite.  For client side state management,
      Redux greatly simplified and centralized code, especially code
      for making requests to the backend and dealing with responses."]
-    [:img {:src "images/projects/ill-brb.png"
-           :style {:border "2px solid var(--accent-color)"
-                   :border-radius "10px"
-                   :width "500px"}}]]
+    [:a {:href "https://ill-brb.each.do"}
+     [:img {:src "images/projects/ill-brb.png"
+            :style {:border "2px solid var(--accent-color)"
+                    :border-radius "10px"
+                    :width "500px"}}]]]
    [:section
     [:h3 "bingo"]
     [:ul
