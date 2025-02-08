@@ -1,5 +1,6 @@
 * portfolio site checklist
-** TODO include a professional photo
+** DONE include a professional photo
+CLOSED: [2025-02-07 Fri]
 ** DONE include "About Me" Paragraph or professional bio
 CLOSED: [2025-02-03 Mon]
 ** DONE include section for future projects

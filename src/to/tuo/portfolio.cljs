@@ -6,7 +6,7 @@
 
 (defn professional-photo []
   [:img#professional-photo
-   {:src   "me.jpg"
+   {:src   "daniel-watson.jpeg"
     :style {:border-radius "10px"
             :width         "300px"
             :height        "auto"}}])
