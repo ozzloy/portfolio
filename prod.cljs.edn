@@ -1,0 +1,3 @@
+{:main          to.tuo.portfolio
+ :optimizations :advanced
+ :output-to     "target/public/main.js"}

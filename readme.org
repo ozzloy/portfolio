@@ -1,0 +1,19 @@
+* deploy
+** build prod
+#+begin_src bash
+  clojure -M -m figwheel.main \
+          --optimizations advanced \
+          --build-once prod
+#+end_src
+** move to server
+#+begin_src bash
+  sudo useradd \
+       --system \
+       --shell /bin/bash \
+       --home-dir /var/www/portfolio.example.com \
+       portfolio.example.com
+  sudo mkdir -p /var/www/portfolio.example.com
+  sudo chown -R \
+       portfolio.example.com:portfolio.example.com \
+       /var/www/portfolio.example.com
+#+end_src

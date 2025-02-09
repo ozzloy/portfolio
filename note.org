@@ -1644,3 +1644,545 @@ This CSS provides:
 - Subtle shadows
 - Mobile responsiveness
 - Clean spacing
+
+* deploy clojure reagent project
+:PROPERTIES:
+:GPTEL_TOPIC: deploy-clojure-reagent-project
+:END:
+
+i have the following reagent file
+
+#+begin_src clojure :file src/to/tuo/portfolio.cljs
+  (ns to.tuo.portfolio
+    (:require
+     ["react-dom/client" :refer [createRoot]]
+     [reagent.core :as r]
+     [clojure.string :as str]))
+
+  (defn professional-photo []
+    [:img#professional-photo
+     {:src   "daniel-watson.jpeg"
+      :style {:border-radius "10px"
+              :width         "300px"
+              :height        "auto"}}])
+
+  (defn about-me []
+    [:section#about-me
+     [:h2 "about me"]
+     [:p "Computers carry math into physical reality.  That is really
+      neat.  Math offers a clarity of thinking that I find soothing and
+      enjoyable.  When implementing an algorithm, the computer makes it
+      clear if some step is not specified completely enough, or is
+      altogether incorrect."]
+     [:p "When doing math, I discover things that are true about the
+      world around me that have been true and will continue to be true
+      forever.  Consequences of certain ideas followed out to their
+      conclusions always comport with prior facts about the world.
+      Seemingly unrelated ideas can have underlying connections that I
+      find satisfying to discover."]
+     [:p "Collaboration with other people motivates me as well.  We can
+      make a lot more progress relying on each other than working alone.
+      I have been working with computers for decades.  When I hit a key
+      on my keyboard, corresponding text shows up on the screen.  I know
+      a lot of the steps involved in making that happen, more than even
+      most programmers.  There are also datastuctures at play that I do
+      not know.  These abstractions make it much easier for me to do the
+      same thing with a wide variety of keyboards.  I contribute to this
+      pretty directly.  With circuitpython, and kmkfw, I recently
+      identified an assumption on the availability of USB HID.  The
+      adafruit devs made an update to circuit python, and I made an
+      update to kmkfw to allow a chip with bluetooth to act as a
+      keyboard.  As a result, I can now use my seeed xiao esp32 c6 as a
+      controller for my keyboard, a capability that was absent when I
+      bought the board."]])
+
+  (defn projects []
+    [:section#projects
+     [:h2 "projects"]
+     [:p "all of these projects are self hosted on a debian vm running
+      apache as a reverse proxy front to various each project's front
+      and back, such as Flask in Python, httpkit in Clojure, and Express
+      in Javascript."]
+     [:section
+      [:h3 "tax"]
+      [:ul
+       [:li [:a {:href "https://tax.each.do/"} "live"]]
+       [:li [:a {:href "https://github.com/ozzloy/tax-back"}
+             "backend code"]]
+       [:li [:a {:href "https://github.com/ozzloy/tax-front"}
+             "frontend code"]]]
+      [:p "In this project, me and my pair programming partner created a
+       rental site, much like AirBnB.  For the backend, we used
+       sequelize which handles JSON requests and serves JSON.  The
+       frontend uses React Vite.  For client side state management,
+       Redux greatly simplified and centralized code, especially code
+       for making requests to the backend and dealing with responses."]
+      [:a {:href "https://tax.each.do/"}
+       [:img {:src "images/projects/tax.png"
+              :style {:border "2px solid var(--accent-color)"
+                      :border-radius "10px"
+                      :width "500px"}}]]]
+     [:section
+      [:h3 "i'll brb"]
+      [:ul
+       [:li [:a {:href "https://ill-brb.each.do/"} "live"]]
+       [:li [:a {:href "https://github.com/ozzloy/solo-ill-brb"} "code"]]]
+      [:p "In this project, me and my pair programming partner created a
+       rental site, much like AirBnB.  For the backend, we used
+       sequelize which handles JSON requests and serves JSON.  The
+       frontend uses React Vite.  For client side state management,
+       Redux greatly simplified and centralized code, especially code
+       for making requests to the backend and dealing with responses."]
+      [:a {:href "https://ill-brb.each.do"}
+       [:img {:src "images/projects/ill-brb.png"
+              :style {:border "2px solid var(--accent-color)"
+                      :border-radius "10px"
+                      :width "500px"}}]]]
+     [:section
+      [:h3 "bingo"]
+      [:ul
+       [:li [:a {:href "https://bingo.each.do/"} "live"]]
+       [:li [:a {:href "https://gitea.com/ozzloy/b1ng0"}
+             "code"]]]
+      [:p "During the covid lock downs, I made this site so I could
+       continue playing bingo with my grampa over the internet through
+       lockdowns.  It uses websockets in clojurescript to coordinate
+       shared state for all connected players.  The frontend updates via
+       Reagent, the clojurescript bridge to React."]
+      [:a {:href "https://bingo.each.do/"}
+       [:img {:src "images/projects/bingo.png"
+              :style {:border "2px solid var(--accent-color)"
+                      :border-radius "10px"
+                      :width "500px"}}]]]
+     [:section
+      [:h3 "where da gas at?"]
+      [:ul
+       [:li [:a {:href "https://where-da-gas-at.each.do/"} "live"]]
+       [:li [:a {:href "https://github.com/ozzloy/where-da-gas-at"}
+             "code"]]]
+      [:p "This app helps users track gas stations and prices.  I took
+       leadership of a group of 4 to complete this project.  Team
+       members looked to me for guidance about what to work on.  I
+       assessed their skills and constraints to give tasks that made the
+       most of them.  I also integrated all the work frequently by
+       rebasing their work into a single line of history."]
+      [:a {:href "https://where-da-gas-at.each.do/"}
+       [:img {:src "images/projects/where-da-gas-at.png"
+              :style {:border "2px solid var(--accent-color)"
+                      :border-radius "10px"
+                      :width "500px"}}]]]])
+
+  (defn future-projects []
+    [:section#future-projects
+     [:h2 "future projects"]
+     [:section
+      [:h3 "fit"]
+      [:h4 "workout timing and tracking."]
+      [:p "the way i work out right now is to watch videos on youtube
+       that have someone do the exercise and follow along with their
+       exact timing.  it would be nice to have an app that can display a
+       couple images of the exercise.  it should alsokeep time and beep
+       to let me know when to switch sides, when to do a mini-rest, when
+       to start and stop an exercise completely."]]
+     [:section
+      [:h3 "keyboard"]
+      [:h4 "wireless split column splay bluetooth 32 key modified
+      miryoku with home row mods"]
+      [:p "i want to make a keyboard using my xiao ble board and kmk
+       firmware.  my current keyboard is a wireless split column stagger
+       keyboard.  it would be neat to make a wireless one with columns
+       splayed out to match my natural finger travel more closely.  this
+       would also be a good project for learning about battery power and
+       usb c plugs and cables.  i have already hand soldered a full
+       keyboard and written firmware for a few devices, so i think that
+       part will be easy enough."]]])
+
+  (def programming-language-badge-width "100px")
+  (defn devicon [language wordmark?]
+    (let [protocol "https"
+          host     "cdn.jsdelivr.net"
+          path     (str
+                    "/gh/devicons/devicon@latest/icons/" language "/")
+          filename (str language
+                        "-original"
+                        (if wordmark? "-wordmark" "")
+                        ".svg")]
+      (str protocol "://" host path filename)))
+
+  (defn local-icon [language extension]
+    (str "images/icons/" language "." extension))
+
+  (defn- icon-item [language src background]
+    [:li
+     [:div
+      [:span (str/replace language #"-" " ")]
+      [:img
+       {:src   src
+        :class background
+        :style {:width  programming-language-badge-width
+                :height "auto"}}]]])
+
+  (defn item-local-icon
+    ([language] (item-local-icon language "png"))
+    ([language extension]
+     (item-local-icon language extension "none"))
+    ([language extension background]
+     [icon-item
+      language (local-icon language extension) background]))
+
+  (defn item-devicon
+    ([language] (item-devicon language "none"))
+    ([language background]
+     (item-devicon language background false))
+    ([language background wordmark?]
+     [icon-item language (devicon language wordmark?) background]))
+
+  (defn skills []
+    [:section#skills
+     [:h2 "skills"]
+     [:section
+      [:h3 "programming languages"]
+      [:p "these are all languages that i've helped other people with, or
+      i have written a lot of for myself.  after working with this many
+      languages, picking up a new one is relatively easy."]
+      [:ul
+       [item-local-icon "arm" "svg" "light"]
+       [item-devicon "arduino"]
+       [item-devicon "awk" "light" "wordmark"]
+       [item-devicon "bash" "light"]
+       [item-devicon "c"]
+       [item-devicon "cplusplus"]
+       [item-devicon "clojure"]
+       [item-devicon "clojurescript"]
+       [item-local-icon "common-lisp"]
+       [item-devicon "elm"]
+       [item-devicon "emacs" "light"]
+       [item-local-icon "guile" "svg" "light"]
+       [item-devicon "haskell"]
+       [item-devicon "java"]
+       [item-devicon "javascript"]
+       [item-local-icon "ladder-diagram"]
+       [item-devicon "matlab"]
+       [item-local-icon "MIPS" "svg" "light"]
+       [item-devicon "ocaml"]
+       [item-local-icon "octave"]
+       [item-local-icon "openscad"]
+       [item-devicon "prolog"]
+       [item-devicon "python"]
+       [item-local-icon "racket" "svg"]
+       [item-devicon "ruby"]
+       [item-local-icon "scratch" "svg"]
+       [item-local-icon "Snap!" "svg"]
+       [item-local-icon "x86" "svg"]]]
+
+     [:section
+      [:h3 "frameworks and libraries and tools"]
+      [:ul
+       [item-devicon "apache"]
+       [item-devicon "bitbucket"]
+       [item-devicon "css3"]
+       [item-devicon "debian"]
+       [item-devicon "express" "light"]
+       [item-devicon "flask" "light"]
+       [item-devicon "gcc"]
+       [item-devicon "git"]
+       [item-devicon "gitlab"]
+       [item-devicon "html5"]
+       [item-devicon "latex" "light"]
+       [item-devicon "linux" "light"]
+       [item-devicon "mocha"]
+       [item-devicon "mysql"]
+       [item-devicon "nodejs"]
+       [item-devicon "npm" "none" true]
+       [item-devicon "postgresql"]
+       [item-devicon "pypi"]
+       [item-devicon "pytest"]
+       [item-devicon "raspberrypi"]
+       [item-devicon "react"]
+       [item-local-icon "reagent" "svg"]
+       [item-devicon "sqlite" "light"]
+       [item-devicon "sequelize"]
+       [item-devicon "sqlalchemy" "light"]
+       [item-devicon "ssh" "light"]
+       [item-devicon "ubuntu"]
+       [item-devicon "vitejs"]]]])
+
+  (defn social []
+    [:section#social
+     [:h2 "socials"]
+     [:ul
+      [:li [:a {:href "https://linkedin.com/in/ozzloy"} "linkedin"]]
+      [:li [:a {:href "https://github.com/ozzloy"} "github"]]]])
+
+  (defn hobbies []
+    [:section#hobbies
+     [:h2 "hobbies"]
+     [:section
+      [:h3 "climbing"]
+      [:p "my mom and dad tell me that if they could not find me when i
+       was a little kid, they would look up.  climbing has puzzle
+       solving and physical strength wrapped together.  the same route
+       looks different depending on who climbs it."]]
+     [:section
+      [:h3 "juggling"]
+      [:p "i can juggle 5-ball.  i made a "
+       [:a {:href (str "https://docs.google.com/document/d/"
+                       "197iyXQcppY7B1_M6Gn-lUU21qyMRK8LqvhypGGvaiHk")}
+        "tutorial on making chain mail juggling props"]
+       "."]]])
+
+  (defn contact []
+    [:section#contact
+     [:h2 "contact"]
+     [:p
+      [:a {:href "mailto:ozzloy@each.do"} "email"]]])
+
+  (defn resume []
+    [:section#resume
+     [:h2 "resume"]
+     [:a {:href "resume/Daniel Watson Web Resume.pdf"} "web dev"]])
+
+  (defn content []
+    [:<>
+     [:header
+      [professional-photo]
+      [:div
+       [:h1 "daniel watson"]
+       [contact]
+       [social]
+       [resume]]]
+     [:main
+      [about-me]
+      [projects]
+      [skills]
+      [hobbies]
+      [future-projects]]])
+
+  (defonce root (createRoot (js/document.getElementById "app")))
+
+  (defn ^:export init []
+    (.render root (r/as-element [content])))
+
+  (init)
+#+end_src
+
+and the following =deps.edn=
+#+begin_src clojure :file deps.edn
+{:paths ["src" "resources" "target"]
+ :deps  {org.clojure/clojure       {:mvn/version "1.12.0"}
+         org.clojure/clojurescript {:mvn/version "1.11.132"}
+         com.bhauman/figwheel-main {:mvn/version "0.2.20"}
+         reagent/reagent           {:mvn/version "1.2.0"}
+         cljsjs/react              {:mvn/version "18.3.1-1"}
+         cljsjs/react-dom          {:mvn/version "18.3.1-1"}}}
+
+#+end_src
+
+how do i deploy this?  i already have apache.  can i compile a bunch
+of static html and css and other assets and scp that up to my server
+and then configure apache accordingly?
+
+Yes, you can compile your Reagent project to static assets and serve
+them via Apache. Here's how:
+
+1. First, create a production build configuration (e.g.,
+   =prod.cljs.edn=):
+#+begin_src clojure
+  {:main to.tuo.portfolio
+   :optimizations :advanced
+   :output-dir "resources/public/js/compiled"
+   :output-to "resources/public/js/main.js"}
+#+end_src
+
+1. Compile the project:
+#+begin_src bash
+  clj -M -m figwheel.main -bo prod
+#+end_src
+
+1. Your compiled assets will be in =resources/public/=. Create an
+   =index.html= there:
+#+begin_src html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Portfolio</title>
+    </head>
+    <body>
+      <div id="app"></div>
+      <script src="js/main.js"></script>
+    </body>
+  </html>
+#+end_src
+
+4. SCP everything from =resources/public/= to your server:
+#+begin_src bash
+  scp -r resources/public/* user@server:/var/www/yoursite/
+#+end_src
+
+5. Configure Apache virtual host:
+#+begin_src apache
+<VirtualHost *:80>
+    ServerName yoursite.com
+    DocumentRoot /var/www/yoursite
+    <Directory /var/www/yoursite>
+        Require all granted
+    </Directory>
+</VirtualHost>
+#+end_src
+
+Remember to include all your static assets (images, CSS) in
+=resources/public/= before copying.
+
+** static =index.html= already has a script tag with a source for dev
+i already have this =index.html= with a script tag for dev.  i can
+make this change, but it would be cool to have a better way to build
+for dev and prod that didn't require me to change the static
+index.html file
+#+begin_src html :file resources/public/index.html
+  <!doctype html>
+  <html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @property --foreground-color {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #eee;
+      }
+
+      @property --background-color {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: #111;
+      }
+
+      @property --accent-color {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: chartreuse;
+      }
+
+      :root {
+        --light-color: #eee;
+        --night-color: #111;
+        transition:
+          --foreground-color 1s ease,
+          --background-color 1s ease,
+          --accent-color 1s ease;
+        color: var(--foreground-color);
+        background-color: var(--background-color);
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <title>daniel watson's portfolio</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script src="/cljs-out/dev-main.js"></script>
+  </body>
+
+  </html>
+#+end_src
+
+
+You can use a build-specific HTML template approach. Here's how:
+
+1. Move your current =index.html= to =resources/public/index_dev.html=
+
+2. Create =resources/public/index_prod.html= with the production
+   script:
+#+begin_src html
+  <!-- Same as dev but change script to: -->
+  <script src="js/main.js"></script>
+#+end_src
+
+3. Add to your build config to copy the right template:
+#+begin_src clojure
+  {:main to.tuo.portfolio
+   :optimizations :advanced
+   :output-dir "resources/public/js/compiled"
+   :output-to "resources/public/js/main.js"
+   :final-output-dir "resources/public"
+   :pre-build-hooks [(fn [_]
+                      (copy-file
+                        "resources/public/index_prod.html"
+                        "resources/public/index.html"))]}
+#+end_src
+
+This way you maintain separate templates for dev/prod but only deploy
+the correct one.
+
+* standard bundling of clojurescript figwheel project
+what's the standard way to bundle a clojurescript figwheel project for
+deployment of the static assets using deps.edn?
+
+
+For ClojureScript projects using deps.edn and figwheel-main, the
+standard approach is to use =cljs.build.api/build= with optimizations
+set to =:advanced=. Add this alias to your deps.edn:
+
+#+begin_src clojure
+{:aliases
+ {:prod {:main-opts ["-m" "cljs.main"
+                     "--optimizations" "advanced"
+                     "--compile" "your.core.namespace"]}}}
+#+end_src
+
+Then run: =clj -M:prod=
+
+* cljfmt
+how do i make cljfmt wrap code at 70 columns?
+
+To make cljfmt wrap at 70 columns, add this to your =cljfmt=
+configuration:
+
+#+begin_src clojure
+  {:max-line-length 70}
+#+end_src
+
+This can go in either =project.clj= or =.cljfmt.edn= in your project
+root.
+
+how do i run cljfmt in my project? i'm using =deps.edn=.  does that
+matter?
+
+For =deps.edn= projects, add cljfmt as an alias in your =deps.edn=:
+
+#+begin_src clojure :file deps.edn
+  {:aliases
+   {:cljfmt
+    {:extra-deps {cljfmt/cljfmt {:mvn/version "0.9.2"}}
+     :main-opts ["-m" "cljfmt.main" "fix"]}}}
+#+end_src
+
+Then run it with:
+
+#+begin_src bash
+  clj -M:cljfmt
+#+end_src
+
+This will format all Clojure files in your project.
+
+would the =:max-line-length= go in the =deps.edn=?  what would the
+final result look like?
+
+
+No, the =:max-line-length= goes in a separate =.cljfmt.edn= file in
+your project root. You'll need both files:
+
+=deps.edn=:
+#+begin_src clojure
+  {:aliases
+   {:cljfmt
+    {:extra-deps {cljfmt/cljfmt {:mvn/version "0.9.2"}}
+     :main-opts ["-m" "cljfmt.main" "fix"]}}}
+#+end_src
+
+=.cljfmt.edn=:
+#+begin_src clojure
+  {:max-line-length 70}
+#+end_src
