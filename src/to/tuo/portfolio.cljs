@@ -280,7 +280,13 @@
   [:section#contact
    [:h2 "contact"]
    [:p
-    [:a {:href "mailto:ozzloy@each.do"} "email"]]])
+    [:a {:href "mailto:ozzloy@each.do"} "email"]]
+   [:p
+    [:a {:href "https://web.libera.chat/"} "ozzloy on libera.chat"]]
+   [:p
+    [:a {:href "https://app.element.io/#/welcome"} "@ozzloy:matrix.org"]]
+   [:p
+    [:a {:href "https://discord.gg/"} "ozzloy_01423"]]])
 
 (defn resume []
   [:section#resume
