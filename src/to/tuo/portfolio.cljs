@@ -63,10 +63,10 @@
      Redux greatly simplified and centralized code, especially code
      for making requests to the backend and dealing with responses."]
     [:a {:href "https://tax.each.do/"}
-     [:img {:src "images/projects/tax.png"
-            :style {:border "2px solid var(--accent-color)"
+     [:img {:src   "images/projects/tax.png"
+            :style {:border        "2px solid var(--accent-color)"
                     :border-radius "10px"
-                    :width "500px"}}]]]
+                    :width         "500px"}}]]]
    [:section
     [:h3 "i'll brb"]
     [:ul
@@ -79,10 +79,10 @@
      Redux greatly simplified and centralized code, especially code
      for making requests to the backend and dealing with responses."]
     [:a {:href "https://ill-brb.each.do"}
-     [:img {:src "images/projects/ill-brb.png"
-            :style {:border "2px solid var(--accent-color)"
+     [:img {:src   "images/projects/ill-brb.png"
+            :style {:border        "2px solid var(--accent-color)"
                     :border-radius "10px"
-                    :width "500px"}}]]]
+                    :width         "500px"}}]]]
    [:section
     [:h3 "bingo"]
     [:ul
@@ -95,10 +95,10 @@
      shared state for all connected players.  The frontend updates via
      Reagent, the clojurescript bridge to React."]
     [:a {:href "https://bingo.each.do/"}
-     [:img {:src "images/projects/bingo.png"
-            :style {:border "2px solid var(--accent-color)"
+     [:img {:src   "images/projects/bingo.png"
+            :style {:border        "2px solid var(--accent-color)"
                     :border-radius "10px"
-                    :width "500px"}}]]]
+                    :width         "500px"}}]]]
    [:section
     [:h3 "where da gas at?"]
     [:ul
@@ -112,10 +112,10 @@
      most of them.  I also integrated all the work frequently by
      rebasing their work into a single line of history."]
     [:a {:href "https://where-da-gas-at.each.do/"}
-     [:img {:src "images/projects/where-da-gas-at.png"
-            :style {:border "2px solid var(--accent-color)"
+     [:img {:src   "images/projects/where-da-gas-at.png"
+            :style {:border        "2px solid var(--accent-color)"
                     :border-radius "10px"
-                    :width "500px"}}]]]])
+                    :width         "500px"}}]]]])
 
 (defn future-projects []
   [:section#future-projects
