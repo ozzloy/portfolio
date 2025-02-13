@@ -1,4 +1,38 @@
 * deploy
+** deploy initial setup
+*** create a user in charge of site
+
+#+begin_src bash
+  ssh example.com
+  # now on remote
+  sudo useradd \
+       --system \
+       --shell /bin/bash \
+       --home-dir /var/www/portfolio.example.com \
+       portfolio.example.com
+  sudo mkdir -p /var/www/portfolio.example.com/.ssh
+  sudo chmod 700 /var/www/portfolio.example.com/.ssh
+  sudo touch /var/www/portfolio.example.com/.ssh/authorized_keys
+  sudo chmod 600 /var/www/portfolio.example.com/.ssh/authorized_keys
+  sudo chown -R \
+       portfolio.example.com:portfolio.example.com \
+       /var/www/portfolio.example.com
+  exit # from remote, back to local shell
+  # now back on local,
+  cat ~/.ssh/id_ecdsa.pub \
+      | ssh example.com \
+            "sudo tee -a \
+             /var/www/portfolio.example.com/.ssh/authorized_keys"
+  cat conf/etc/apache2/sites-available/portfolio.example.com.conf \
+      | ssh example.com \
+            "sudo tee -a \
+             /etc/apache2/sites-available/portfolio.example.com.conf"
+  ssh example.com # go back to remote
+  # now, back on remote
+  sudo a2ensite portfolio.example.com
+  sudo systemctl reload apache2
+#+end_src
+
 ** build prod
 #+begin_src bash
   clojure -M -m figwheel.main \
@@ -7,13 +41,14 @@
 #+end_src
 ** move to server
 #+begin_src bash
-  sudo useradd \
-       --system \
-       --shell /bin/bash \
-       --home-dir /var/www/portfolio.example.com \
-       portfolio.example.com
-  sudo mkdir -p /var/www/portfolio.example.com
-  sudo chown -R \
-       portfolio.example.com:portfolio.example.com \
-       /var/www/portfolio.example.com
+  scp resources/public/index-prod.html \
+      portfolio.example.com@example.com:index.html
+  scp target/public/main.js \
+      portfolio.example.com@example.com:main.js
+  rsync -ravz resources/public/css \
+        portfolio.example.com@example.com:
+  rsync -ravz resources/public/images \
+        portfolio.example.com@example.com:
+  rsync -ravz resources/public/resume \
+        portfolio.example.com@example.com:
 #+end_src

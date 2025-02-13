@@ -1,3 +1,6 @@
+* TODO add link to calendar
+https://ozzloy.youcanbook.me/
+
 * portfolio site checklist
 ** DONE include a professional photo
 CLOSED: [2025-02-07 Fri]
@@ -10,10 +13,14 @@ CLOSED: [2025-02-06 Thu]
 ** DONE add github and linkedin links
 CLOSED: [2025-02-04 Tue]
 ** TODO include section for hobbies, writings, cool stuff about you!
-** TODO add contact information
-** TODO project links
-*** TODO include live links, code links
-** TODO include pdf resume link
+** DONE add contact information
+CLOSED: [2025-02-12 Wed]
+** DONE project links
+CLOSED: [2025-02-12 Wed]
+*** DONE include live links, code links
+CLOSED: [2025-02-12 Wed]
+** DONE include pdf resume link
+CLOSED: [2025-02-12 Wed]
 ** TODO include project walk-through videos (bonus)
 ** TODO include testimonials (bonus)
 
@@ -2186,3 +2193,151 @@ your project root. You'll need both files:
 #+begin_src clojure
   {:max-line-length 70}
 #+end_src
+
+* scp to remote
+i created a user on the server like this:
+#+begin_src bash
+  sudo useradd \
+       --system \
+       --shell /bin/bash \
+       --home-dir /var/www/portfolio.example.com \
+       portfolio.example.com
+  sudo mkdir -p /var/www/portfolio.example.com
+  sudo chown -R \
+       portfolio.example.com:portfolio.example.com \
+       /var/www/portfolio.example.com
+#+end_src
+
+how do i make it so my local user can
+#+begin_src bash
+  scp resources/public/index-prod.html \
+      portfolio.example.com@example.com:index.html
+#+end_src
+
+i need to create a =.ssh/authorized-keys2= or something, right?
+
+
+Yes, you need to set up SSH keys. Here's what to do:
+
+1. Create =.ssh= directory on server:
+#+begin_src bash
+  sudo mkdir -p /var/www/portfolio.example.com/.ssh
+  sudo chown portfolio.example.com:portfolio.example.com \
+       /var/www/portfolio.example.com/.ssh
+  sudo chmod 700 /var/www/portfolio.example.com/.ssh
+#+end_src
+
+2. Copy your local public key to server:
+#+begin_src bash
+  cat ~/.ssh/id_rsa.pub \
+      | ssh example.com \
+            "sudo tee \
+             /var/www/portfolio.example.com/.ssh/authorized_keys"
+#+end_src
+
+3. Set permissions:
+#+begin_src bash
+  sudo chown portfolio.example.com:portfolio.example.com \
+       /var/www/portfolio.example.com/.ssh/authorized_keys
+  sudo chmod 600 /var/www/portfolio.example.com/.ssh/authorized_keys
+#+end_src
+
+Now =scp= should work.
+
+* apache config for serving static site
+i have apache up and running.  i want to add a config for requests to
+"portfolio.example.com" and serve the files in
+=/var/www/portfolio.example.com= for those requests.
+
+Create a new Virtual Host configuration file in
+=/etc/apache2/sites-available/=:
+
+#+begin_src apache
+# portfolio.example.com.conf
+<VirtualHost *:80>
+    ServerName portfolio.example.com
+    DocumentRoot /var/www/portfolio.example.com
+
+    <Directory /var/www/portfolio.example.com>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+#+end_src
+
+Then:
+1. =sudo a2ensite portfolio.example.com.conf=
+2. =sudo systemctl reload apache2=
+
+Don't forget to add the domain to your hosts file or DNS.
+
+i've also set up ssl.  does this configuration look ok?
+there are no symlinks to follow.
+#+begin_src conf
+  <VirtualHost *:80>
+    ServerName portfolio.example.com
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    RewriteEngine on
+    RewriteCond %{SERVER_NAME} =portfolio.example.com
+    RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+  </VirtualHost>
+
+  <VirtualHost *:443>
+    ServerName portfolio.example.com
+
+    SSLEngine on
+    SSLCertificateFile /path/to/your/fullchain.pem
+    SSLCertificateKeyFile /path/to/your/privkey.pem
+
+    DocumentRoot /var/www/portfolio.example.com
+    <Directory /var/www/portfolio.example.com>
+      Options Indexes
+      AllowOverride All
+      Require all granted
+    </Directory>
+  </VirtualHost>
+#+end_src
+
+please explain =AllowOverride=
+
+
+Your configuration looks good. It redirects HTTP to HTTPS and serves
+your portfolio over SSL.
+
+=AllowOverride All= specifies which directives in =.htaccess= files
+can override the main configuration. Options are:
+
+- =All=: Allow all overrides
+- =None=: Disable =.htaccess= completely
+- Specific options like =FileInfo=, =AuthConfig=, =Indexes=
+
+If you don't plan to use =.htaccess= files, you can safely set it to
+=None=. This is actually better for performance since Apache won't
+check for =.htaccess= files in each directory.
+
+Also, since you don't need symlinks, you can remove =FollowSymLinks=
+from the config.
+
+what about the lines
+#+begin_src conf
+  ProxyPreserveHost On
+  ProxyRequests Off
+#+end_src
+what do they do?
+
+
+Those lines are actually unnecessary in your configuration since
+you're not using Apache as a proxy server. They're typically used when
+Apache acts as a reverse proxy to another server.
+
+- =ProxyPreserveHost On=: Passes the original Host header to the
+  backend server
+- =ProxyRequests Off=: Disables forward proxy functionality (security
+  measure)
+
+Since you're directly serving static files from
+=/var/www/portfolio.example.com=, you can safely remove these lines
+from your config.
