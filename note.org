@@ -1,4 +1,192 @@
+* add css inline
+how do i add css inline for html?
+#+begin_src html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Contact Information</title>
+  </head>
+  <body>
+    <main>
+        <section>
+            <h2>Professional</h2>
+            <article>
+                <h3>LinkedIn</h3>
+                <p><a href="https://linkedin.com/in/ozzloy">linkedin.com/in/ozzloy</a></p>
+            </article>
+            <article>
+                <h3>Email</h3>
+                <p><a href="mailto:ozzloy@each.do">ozzloy@each.do</a></p>
+            </article>
+            <article>
+              <h3><a href="https://discord.com/">Discord</a></h3>
+                <p>ozzloy_01423</p>
+            </article>
+        </section>
+    </main>
+  </body>
+  </html>
+#+end_src
+
+i want green text on black background.
+
+also style links to be green on black background, but make them look
+cool.
+
+
+
+To add inline CSS for green text on a black background, you can add a
+=<style>= block in the =<head>= section. Here's how to modify your
+HTML:
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Information</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00; /* bright green text */
+            font-family: 'Courier New', monospace;
+        }
+
+        a {
+            color: #00ff00;
+            text-decoration: none;
+            border-bottom: 1px solid #00aa00;
+            transition: all 0.3s ease;
+            padding: 2px 4px;
+        }
+
+        a:hover {
+            background-color: #003300;
+            border-bottom: 1px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+    </style>
+</head>
+<body>
+  <main>
+      <section>
+          <h2>Professional</h2>
+          <article>
+              <h3>LinkedIn</h3>
+              <p><a href="https://linkedin.com/in/ozzloy">linkedin.com/in/ozzloy</a></p>
+          </article>
+          <article>
+              <h3>Email</h3>
+              <p><a href="mailto:ozzloy@each.do">ozzloy@each.do</a></p>
+          </article>
+          <article>
+            <h3><a href="https://discord.com/">Discord</a></h3>
+              <p>ozzloy_01423</p>
+          </article>
+      </section>
+  </main>
+</body>
+</html>
+#+end_src
+
+This creates a "hacker" style with green text on black background, and
+links that glow and get a subtle background when you hover over them.
+* DONE troubleshoot apache
+CLOSED: [2025-04-04 Fri]
+
+i'm getting the default apache page for =calendar.each.do=
+
+here's my apache config for that
+
+#+begin_src conf
+  <VirtualHost *:80>
+    ServerName calendar.each.do
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    RewriteEngine on
+    RewriteCond %{SERVER_NAME} =calendar.each.do
+    RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+  </VirtualHost>
+
+  <VirtualHost *:443>
+      ServerName calendar.each.do
+
+      # SSL Configuration
+      SSLEngine on
+      SSLCertificateFile /etc/letsencrypt/live/each.do-0001/fullchain.pem
+      SSLCertificateKeyFile /etc/letsencrypt/live/each.do-0001/privkey.pem
+
+      # Redirect
+      <Directory "/var/www/calendar.each.do/">
+        Options FollowSymLinks MultiViews
+        AllowOverride None
+        require all granted
+      </Directory>
+
+      # Logging
+      ErrorLog ${APACHE_LOG_DIR}/calendar.each.do_error.log
+      CustomLog ${APACHE_LOG_DIR}/calendar.each.do_access.log combined
+  </VirtualHost>
+#+end_src
+
+what's happening?
+
+
+Your Apache configuration is redirecting HTTP to HTTPS correctly, but
+your HTTPS VirtualHost doesn't have any actual content delivery
+configured. You're getting the default Apache page because:
+
+1. You've set up a Directory directive, but you're not using it to
+   serve content (no DocumentRoot directive)
+2. There's no ProxyPass configuration to forward requests to a backend
+   service
+
+You need to either:
+
+1. Add a DocumentRoot directive that points to where your calendar
+   application files are located:
+   #+begin_src conf
+   DocumentRoot /var/www/calendar.each.do/
+   #+end_src
+
+2. Or if you're proxying to another service (like a calendar app
+   running on another port), add:
+   #+begin_src conf
+   ProxyPass / http://localhost:your_app_port/
+   ProxyPassReverse / http://localhost:your_app_port/
+   #+end_src
+
+Check your Apache error logs for more specific information about
+what's happening.
+
+* DONE make contacts page
+CLOSED: [2025-04-04 Fri]
+
+  + linkedin
+  + matrix.org
+  + irc libera channels
+  + youtube channel
+  + discord
+  + email
+  + website
+  + github repos
+  + calendar website
+
+* DONE make calendar.each.do
+CLOSED: [2025-04-04 Fri]
+
+  + initially just redirect to youcanbook.me
+
+* TODO add buttons for light/dark theme
+[2025-02-12 Wed 21:05 -0800]
+* TODO add choices for accent color
+[2025-02-12 Wed 21:05 -0800]
 * TODO add link to calendar
+[2025-02-12 Wed 21:05 -0800]
 https://ozzloy.youcanbook.me/
 
 * portfolio site checklist
@@ -577,8 +765,8 @@ clojure.lang.ExceptionInfo: No such namespace: react, could not locate react.clj
 2    (:require [goog.object :as gobj]
 3              [react :as react]
                 ^---
-                     No such namespace: react, could not locate react.cljs, react.cljc, or JavaScript source providing "react" in file 
-                                                                                target/public/cljs-out/dev/reagent/impl/component.cljs 
+                     No such namespace: react, could not locate react.cljs, react.cljc, or JavaScript source providing "react" in file
+                                                                                target/public/cljs-out/dev/reagent/impl/component.cljs
 4              [reagent.impl.util :as util]
 5              [reagent.impl.batching :as batch]
 6              [reagent.impl.protocols :as p]
